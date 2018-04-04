@@ -1,4 +1,4 @@
-package org.bienestar.cocina;
+package org.bienestar.cocina.validadores;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -45,6 +45,12 @@ public class ValidadorFechaTest {
 	@Test(expected = ValidacionException.class)
 	public void formatoGuiones() throws ValidacionException{
 		String fecha = "03-Mar-2018";
+		validadorFecha.validar(fecha);
+	}
+	
+	@Test()
+	public void fechaValida(){
+		String fecha = "03/03/2018";
 		validadorFecha.validar(fecha);
 	}
 	

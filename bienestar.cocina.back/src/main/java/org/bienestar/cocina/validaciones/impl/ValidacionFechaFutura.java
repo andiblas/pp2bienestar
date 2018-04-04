@@ -14,10 +14,10 @@ public class ValidacionFechaFutura implements Validacion{
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 		try {
 			if(hoy.before(sdf.parse((String) param))){
-				throw new ValidacionException();
+				throw new ValidacionException("Fecha superior a la fecha de hoy");
 			}
 		} catch (ParseException e) {
-			throw new ValidacionException("Fecha superior a la fecha de hoy");
+			throw new ValidacionException("Error en parseo de fecha");
 		}
 	}
 
