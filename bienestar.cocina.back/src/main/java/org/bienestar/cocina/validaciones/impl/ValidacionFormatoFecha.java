@@ -15,7 +15,7 @@ public class ValidacionFormatoFecha implements Validacion {
 	public void execute(Object param) throws ValidacionException {
 		String fecha = (String) param;
 		if (!fecha.matches(formato.getFormato())) {
-			throw new ValidacionException();
+			throw new ValidacionException("Formato de fecha incorrecto");
 		}
 	}
 

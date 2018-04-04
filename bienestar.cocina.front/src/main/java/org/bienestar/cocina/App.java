@@ -3,8 +3,8 @@ package org.bienestar.cocina;
 import javax.swing.SwingUtilities;
 
 import org.bienestar.cocina.controller.Controller;
-import org.bienestar.cocina.model.Model;
-import org.bienestar.cocina.view.View;
+import org.bienestar.cocina.controller.PlanillaDiariaController;
+import org.bienestar.cocina.view.PlantillaDiariaView;
 
 /**
  * Hello world!
@@ -18,11 +18,8 @@ public class App {
 
             public void run() {
 
-                Model model = new Model();
-                View view = new View(model);
-                Controller controller = new Controller(model, view);
-
-                model.addObserver(view);
+                PlantillaDiariaView view = PlantillaDiariaView.getInstance();
+                Controller<PlantillaDiariaView> controller = new PlanillaDiariaController(view);
 
             }
         });

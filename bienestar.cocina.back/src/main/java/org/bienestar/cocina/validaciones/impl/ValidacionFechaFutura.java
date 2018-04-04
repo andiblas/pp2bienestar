@@ -17,7 +17,7 @@ public class ValidacionFechaFutura implements Validacion{
 				throw new ValidacionException();
 			}
 		} catch (ParseException e) {
-			throw new ValidacionException();
+			throw new ValidacionException("Fecha superior a la fecha de hoy");
 		}
 	}
 

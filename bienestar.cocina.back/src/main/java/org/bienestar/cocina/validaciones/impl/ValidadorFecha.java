@@ -13,7 +13,7 @@ public class ValidadorFecha extends Validador{
 	}
 	
 	@Override
-	public void validar(Object param) throws ValidacionException {
+	protected void validate(Object param) throws ValidacionException {
 		for(Validacion validacion : validaciones){
 			validacion.execute(param);
 		}
