@@ -18,14 +18,14 @@ public abstract class Validador extends Observable{
 	
 	public void validar(Object param){
 		try {
-			validate(param);
+			for(Validacion validacion : validaciones){
+				validacion.execute(param);
+			}
 		} catch (ValidacionException e) {
 			setChanged();
 			notifyObservers(new Mensaje("E", e.getMessage()));
 		}
 	}
-	
-	protected abstract void validate(Object param) throws ValidacionException;
 	
 	protected void agregarValidacion(Validacion validacion){
 		this.validaciones.add(validacion);
