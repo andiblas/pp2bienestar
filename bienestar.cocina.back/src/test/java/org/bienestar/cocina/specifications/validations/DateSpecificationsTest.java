@@ -21,13 +21,25 @@ public class DateSpecificationsTest {
 	
 	@Test
 	public void oneSeparatorRight() {
-		OneSeparatorSpecification spec = new OneSeparatorSpecification("/");
+		HasOneSeparatorSpecification spec = new HasOneSeparatorSpecification("/");
 		assertTrue(spec.isSatisfiedBy("02/04"));
 	}
 	
 	@Test
 	public void oneSeparatorWrong() {
-		OneSeparatorSpecification spec = new OneSeparatorSpecification("/");
+		HasOneSeparatorSpecification spec = new HasOneSeparatorSpecification("/");
 		assertFalse(spec.isSatisfiedBy("02/04/2000"));
+	}
+	
+	@Test
+	public void validMonth() {
+		IsMonthSpecification spec = new IsMonthSpecification("/");
+		assertTrue(spec.isSatisfiedBy("02/04"));
+	}
+	
+	@Test
+	public void invalidMonth() {
+		IsMonthSpecification spec = new IsMonthSpecification("/");
+		assertFalse(spec.isSatisfiedBy("02/13"));
 	}
 }

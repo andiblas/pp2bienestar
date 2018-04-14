@@ -2,11 +2,11 @@ package org.bienestar.cocina.specifications.validations;
 
 import org.bienestar.cocina.specifications.generic.AbstractSpecification;
 
-public class OneSeparatorSpecification extends AbstractSpecification<String>{
+public class HasOneSeparatorSpecification extends AbstractSpecification<String>{
 
 	private String separator;
 	
-	public OneSeparatorSpecification(String separator) {
+	public HasOneSeparatorSpecification(String separator) {
 		this.separator = separator;
 	}
 
