@@ -8,6 +8,9 @@ public class CircuitBreakerRegistry {
 	private static CircuitBreakerRegistry instance;
 	private Map<String, CircuitBreaker> registry = new HashMap<String, CircuitBreaker>();
 
+	private CircuitBreakerRegistry() {
+	}
+
 	public static synchronized CircuitBreakerRegistry getInstance() {
 		if (instance == null) {
 			instance = new CircuitBreakerRegistry();
