@@ -3,8 +3,7 @@ package org.bienestar.cocina.breaker;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.bienestar.cocina.excepciones.CircuitBreakerOpenException;
-import org.bienestar.cocina.mensajes.SendMessageCommand;
+import org.bienestar.cocina.excepciones.OpenCircuitException;
 
 public class CircuitBreaker {
 
@@ -26,8 +25,9 @@ public class CircuitBreaker {
 	public void run() throws Exception {
 
 		try {
-			if (CircuitBreakerState.OPEN.equals(state))
-				throw new CircuitBreakerOpenException();
+			if (CircuitBreakerState.OPEN.equals(state)) {
+				throw new OpenCircuitException();
+			}
 
 			command.execute();
 
@@ -35,12 +35,14 @@ public class CircuitBreaker {
 				changeState(CircuitBreakerState.CLOSE);
 				errorCount = 0;
 			}
-		} catch (CircuitBreakerOpenException e) {
+			
+		} catch (OpenCircuitException e) {
 			throw e;
 		} catch (Exception e) {
 
-			if (this.errorCount < this.errorLimit)
+			if (this.errorCount < this.errorLimit) {
 				this.errorCount++;
+			}
 
 			if (this.errorCount == this.errorLimit) {
 				trip();

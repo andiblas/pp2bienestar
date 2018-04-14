@@ -4,7 +4,7 @@ import org.bienestar.cocina.excepciones.SendingException;
 
 public class EjemploSender implements Sender{
 
-	public void send(Message message) throws SendingException {
+	public void send(String message) throws SendingException {
 		throw new SendingException("errorSender");
 	}
 

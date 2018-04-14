@@ -4,5 +4,5 @@ import org.bienestar.cocina.excepciones.SendingException;
 
 public interface Sender {
 
-	void send(Message message) throws SendingException;
+	void send(String message) throws SendingException;
 }

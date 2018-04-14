@@ -1,6 +1,6 @@
 package org.bienestar.cocina.excepciones;
 
-public class CircuitBreakerOpenException extends Exception {
+public class OpenCircuitException extends Exception {
 
 	/**
 	 * 
