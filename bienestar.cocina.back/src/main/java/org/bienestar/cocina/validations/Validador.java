@@ -1,11 +1,11 @@
-package org.bienestar.cocina.validaciones;
+package org.bienestar.cocina.validations;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Observable;
 
-import org.bienestar.cocina.excepciones.ValidacionException;
-import org.bienestar.cocina.mensajes.Mensaje;
+import org.bienestar.cocina.exceptions.ValidacionException;
+import org.bienestar.cocina.messages.Mensaje;
 
 public abstract class Validador extends Observable{
 

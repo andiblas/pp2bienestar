@@ -3,9 +3,9 @@ package org.bienestar.cocina.validadores;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-import org.bienestar.cocina.excepciones.ValidacionException;
-import org.bienestar.cocina.validaciones.Validador;
-import org.bienestar.cocina.validaciones.impl.ValidadorFecha;
+import org.bienestar.cocina.exceptions.ValidacionException;
+import org.bienestar.cocina.validations.Validador;
+import org.bienestar.cocina.validations.impl.ValidadorFecha;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -3,7 +3,7 @@ package org.bienestar.cocina.breaker;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import org.bienestar.cocina.excepciones.OpenCircuitException;
+import org.bienestar.cocina.exceptions.OpenCircuitException;
 
 public class CircuitBreaker {
 

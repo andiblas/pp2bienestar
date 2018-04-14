@@ -1,6 +1,6 @@
-package org.bienestar.cocina.validaciones.impl;
+package org.bienestar.cocina.validations.impl;
 
-import org.bienestar.cocina.validaciones.Validador;
+import org.bienestar.cocina.validations.Validador;
 
 public class ValidadorFecha extends Validador{
 

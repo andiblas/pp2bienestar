@@ -1,4 +1,4 @@
-package org.bienestar.cocina.consumo;
+package org.bienestar.cocina.consumption;
 
 import java.util.Date;
 

@@ -1,8 +1,8 @@
-package org.bienestar.cocina.validaciones.impl;
+package org.bienestar.cocina.validations.impl;
 
-import org.bienestar.cocina.excepciones.ValidacionException;
-import org.bienestar.cocina.formatos.FormatoFecha;
-import org.bienestar.cocina.validaciones.Validacion;
+import org.bienestar.cocina.exceptions.ValidacionException;
+import org.bienestar.cocina.formats.FormatoFecha;
+import org.bienestar.cocina.validations.Validacion;
 
 public class ValidacionFormatoFecha implements Validacion {
 

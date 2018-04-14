@@ -1,4 +1,4 @@
-package org.bienestar.cocina.excepciones;
+package org.bienestar.cocina.exceptions;
 
 public class SendingException extends Exception{
 

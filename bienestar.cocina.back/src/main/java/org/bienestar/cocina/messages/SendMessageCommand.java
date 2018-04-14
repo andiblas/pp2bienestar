@@ -1,4 +1,4 @@
-package org.bienestar.cocina.mensajes;
+package org.bienestar.cocina.messages;
 
 import org.bienestar.cocina.breaker.CircuitBreakerCommand;
 import org.bienestar.cocina.breaker.Sender;

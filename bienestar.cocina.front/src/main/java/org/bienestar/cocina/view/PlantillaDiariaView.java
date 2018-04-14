@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import org.bienestar.cocina.mensajes.Mensaje;
+import org.bienestar.cocina.messages.Mensaje;
 
 public class PlantillaDiariaView extends View{
 

@@ -1,7 +1,7 @@
 package org.bienestar.cocina.breaker;
 
-import org.bienestar.cocina.excepciones.OpenCircuitException;
-import org.bienestar.cocina.mensajes.SendMessageCommand;
+import org.bienestar.cocina.exceptions.OpenCircuitException;
+import org.bienestar.cocina.messages.SendMessageCommand;
 import org.junit.Before;
 import org.junit.Test;
 

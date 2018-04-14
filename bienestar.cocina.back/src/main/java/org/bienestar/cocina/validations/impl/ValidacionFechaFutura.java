@@ -1,11 +1,11 @@
-package org.bienestar.cocina.validaciones.impl;
+package org.bienestar.cocina.validations.impl;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.bienestar.cocina.excepciones.ValidacionException;
-import org.bienestar.cocina.validaciones.Validacion;
+import org.bienestar.cocina.exceptions.ValidacionException;
+import org.bienestar.cocina.validations.Validacion;
 
 public class ValidacionFechaFutura implements Validacion{
 

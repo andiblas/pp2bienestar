@@ -1,7 +1,8 @@
 package org.bienestar.cocina.validaciones;
 
-import org.bienestar.cocina.excepciones.ValidacionException;
-import org.bienestar.cocina.validaciones.impl.ValidacionFechaFutura;
+import org.bienestar.cocina.exceptions.ValidacionException;
+import org.bienestar.cocina.validations.Validacion;
+import org.bienestar.cocina.validations.impl.ValidacionFechaFutura;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package org.bienestar.cocina.mensajes;
+package org.bienestar.cocina.messages;
 
 public class Mensaje {
 

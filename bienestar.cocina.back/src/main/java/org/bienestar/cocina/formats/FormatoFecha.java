@@ -1,4 +1,4 @@
-package org.bienestar.cocina.formatos;
+package org.bienestar.cocina.formats;
 
 public class FormatoFecha {
 
