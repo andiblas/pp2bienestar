@@ -6,7 +6,7 @@ import java.util.Map;
 public class CircuitBreakerRegistry {
 
 	private static CircuitBreakerRegistry instance;
-	private Map<String, CircuitBreaker<Sender>> registry = new HashMap<String, CircuitBreaker<Sender>>();
+	private Map<String, CircuitBreaker> registry = new HashMap<String, CircuitBreaker>();
 
 	public static synchronized CircuitBreakerRegistry getInstance() {
 		if (instance == null) {
@@ -15,16 +15,16 @@ public class CircuitBreakerRegistry {
 		return instance;
 	}
 
-	public synchronized CircuitBreaker<?> getCircuitBreaker(String name) {
+	public synchronized CircuitBreaker getCircuitBreaker(String name) {
 		return registry.get(name);
 	}
 
-	public synchronized void register(CircuitBreaker<Sender> breaker) {
-		if (!isRegistered(breaker.getNombre())) {
-			registry.put(breaker.getNombre(), breaker);
+	public synchronized void register(String name, CircuitBreaker breaker) {
+		if (!isRegistered(name)) {
+			registry.put(name, breaker);
 		}
 	}
-	
+
 	private boolean isRegistered(final String name) {
 		return registry.containsKey(name);
 	}
