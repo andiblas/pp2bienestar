@@ -1,12 +1,12 @@
 package org.bienestar.cocina.messages;
 
-public class Mensaje {
+public class Message {
 
 	private String tipo;
 	private String mensaje;
 	
 	
-	public Mensaje(String tipo, String mensaje) {
+	public Message(String tipo, String mensaje) {
 		super();
 		this.tipo = tipo;
 		this.mensaje = mensaje;

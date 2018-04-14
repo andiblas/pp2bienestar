@@ -1,15 +1,15 @@
 package org.bienestar.cocina.validations.impl;
 
 import org.bienestar.cocina.exceptions.ValidacionException;
-import org.bienestar.cocina.formats.FormatoFecha;
-import org.bienestar.cocina.validations.Validacion;
+import org.bienestar.cocina.formats.DateFormat;
+import org.bienestar.cocina.validations.Validator;
 
-public class ValidacionFormatoFecha implements Validacion {
+public class DateFormatValidation implements Validator {
 
-	private FormatoFecha formato;
+	private DateFormat formato;
 
-	public ValidacionFormatoFecha() {
-		formato = new FormatoFecha();
+	public DateFormatValidation() {
+		formato = new DateFormat();
 	}
 
 	public void execute(Object param) throws ValidacionException {

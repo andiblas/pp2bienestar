@@ -5,7 +5,7 @@ import java.util.Calendar;
 
 import org.bienestar.cocina.exceptions.ValidacionException;
 import org.bienestar.cocina.validations.Validador;
-import org.bienestar.cocina.validations.impl.ValidadorFecha;
+import org.bienestar.cocina.validations.impl.DateValidator;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +15,7 @@ public class ValidadorFechaTest {
 	
 	@Before
 	public void setUp() throws Exception {
-		validadorFecha = new ValidadorFecha();
+		validadorFecha = new DateValidator();
 	}
 	
 	@Test(expected = ValidacionException.class)

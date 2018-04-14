@@ -2,11 +2,11 @@ package org.bienestar.cocina.consumption;
 
 import java.util.Date;
 
-public class FechaConsumo {
+public class ConsumptionDate {
 
 	private Date fecha;
 	
-	public FechaConsumo(Date fecha) {
+	public ConsumptionDate(Date fecha) {
 		this.fecha = fecha;
 	}
 

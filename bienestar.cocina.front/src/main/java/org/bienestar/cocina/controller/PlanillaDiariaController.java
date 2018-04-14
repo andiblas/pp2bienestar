@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import org.bienestar.cocina.validations.Validador;
-import org.bienestar.cocina.validations.impl.ValidadorFecha;
+import org.bienestar.cocina.validations.impl.DateValidator;
 import org.bienestar.cocina.view.PlantillaDiariaView;
 
 public class PlanillaDiariaController extends Controller<PlantillaDiariaView>{
@@ -13,7 +13,7 @@ public class PlanillaDiariaController extends Controller<PlantillaDiariaView>{
 
 	public PlanillaDiariaController(PlantillaDiariaView view) {
 		super(view);
-		fechaValidador = new ValidadorFecha();
+		fechaValidador = new DateValidator();
 		fechaValidador.addObserver(view);
 		view.asociarEnviarListener(new EnviarListener());
 	}

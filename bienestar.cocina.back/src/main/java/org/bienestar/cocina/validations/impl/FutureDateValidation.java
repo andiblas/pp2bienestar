@@ -5,9 +5,9 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import org.bienestar.cocina.exceptions.ValidacionException;
-import org.bienestar.cocina.validations.Validacion;
+import org.bienestar.cocina.validations.Validator;
 
-public class ValidacionFechaFutura implements Validacion{
+public class FutureDateValidation implements Validator{
 
 	public void execute(Object param) throws ValidacionException {
 		Date hoy = new Date();

@@ -1,18 +1,18 @@
 package org.bienestar.cocina.validaciones;
 
 import org.bienestar.cocina.exceptions.ValidacionException;
-import org.bienestar.cocina.validations.Validacion;
-import org.bienestar.cocina.validations.impl.ValidacionFechaFutura;
+import org.bienestar.cocina.validations.Validator;
+import org.bienestar.cocina.validations.impl.FutureDateValidation;
 import org.junit.Before;
 import org.junit.Test;
 
 public class ValidacionFechaFuturaTest {
 
-	private Validacion validacion;
+	private Validator validacion;
 	
 	@Before
 	public void setUp() throws Exception {
-		validacion = new ValidacionFechaFutura();
+		validacion = new FutureDateValidation();
 	}
 	
 	@Test(expected = ValidacionException.class)

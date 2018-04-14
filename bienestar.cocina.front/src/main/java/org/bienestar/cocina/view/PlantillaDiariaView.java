@@ -9,7 +9,7 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
-import org.bienestar.cocina.messages.Mensaje;
+import org.bienestar.cocina.messages.Message;
 
 public class PlantillaDiariaView extends View{
 
@@ -50,7 +50,7 @@ public class PlantillaDiariaView extends View{
 	}
 	
 	public void update(Observable o, Object arg) {
-		Mensaje mensaje = (Mensaje) arg;
+		Message mensaje = (Message) arg;
 		JOptionPane.showMessageDialog(null, mensaje.getMensaje());
 	}
 
