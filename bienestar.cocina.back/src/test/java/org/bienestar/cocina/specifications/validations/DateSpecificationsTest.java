@@ -88,6 +88,12 @@ public class DateSpecificationsTest {
 	}
 	
 	@Test
+	public void invalidDays() {
+		Specification<String> spec = new Is30DaysMonth("/").and(new IsValidDay("/", 30));
+		assertFalse(spec.isSatisfiedBy("31/04"));
+	}
+	
+	@Test
 	public void isValidDay() {
 		Specification<String> is31daysMonthSpecification = new Is31DaysMonth("/").and(new IsValidDay("/", 31));
 		Specification<String> is30daysMonthSpecification = new Is30DaysMonth("/").and(new IsValidDay("/", 30));
@@ -103,5 +109,10 @@ public class DateSpecificationsTest {
 	public void isNotLeapYear() {
 		Specification<String> leapYear = new IsLeapYear();
 		assertTrue(leapYear.not(leapYear).isSatisfiedBy("30/04"));
+	}
+	
+	@Test
+	public void isNot31daysMonth() {
+		assertFalse(new Is31DaysMonth("/").isSatisfiedBy("30/04"));
 	}
 }
