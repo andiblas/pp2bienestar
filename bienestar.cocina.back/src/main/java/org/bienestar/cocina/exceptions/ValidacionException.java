@@ -16,14 +16,4 @@ public class ValidacionException extends Exception{
         super(message);
     }
 
-    /**
-     * Contructor con el Mensaje de Error y la Causa de la Excepción
-     *
-     * @param message Mensaje de Error
-     * @param cause Causa de la Excepción
-     */
-    public ValidacionException(String message, Throwable cause) {
-        super(message, cause);
-    }
-
 }
