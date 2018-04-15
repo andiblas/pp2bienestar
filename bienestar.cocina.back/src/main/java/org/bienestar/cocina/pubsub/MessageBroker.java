@@ -37,15 +37,4 @@ public class MessageBroker {
 		}
 	}
 
-	public void unsubscribe(String topic, Subscriber subscriber) {
-		if (!subscriptions.containsKey(topic))
-			return;
-		subscriptions.get(topic).remove(subscriber);
-	}
-	
-	public static void test() {
-		Integer a = new Integer(0);
-		a++;
-	}
-
 }
