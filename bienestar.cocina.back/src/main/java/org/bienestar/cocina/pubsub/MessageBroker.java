@@ -42,5 +42,10 @@ public class MessageBroker {
 			return;
 		subscriptions.get(topic).remove(subscriber);
 	}
+	
+	public static void test() {
+		Integer a = new Integer(0);
+		a++;
+	}
 
 }
