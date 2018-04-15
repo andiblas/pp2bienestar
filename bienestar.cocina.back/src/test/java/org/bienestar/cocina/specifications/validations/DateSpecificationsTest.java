@@ -88,6 +88,13 @@ public class DateSpecificationsTest {
 	}
 	
 	@Test
+	public void isNotFebruary() {
+		Specification<String> spec = new IsFebruary("/");
+		assertFalse(spec.isSatisfiedBy("30/05"));
+	}
+	
+	
+	@Test
 	public void invalidDays() {
 		Specification<String> spec = new Is30DaysMonth("/").and(new IsValidDay("/", 30));
 		assertFalse(spec.isSatisfiedBy("31/04"));
