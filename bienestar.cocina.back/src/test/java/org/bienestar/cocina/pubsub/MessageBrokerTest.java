@@ -35,4 +35,9 @@ public class MessageBrokerTest {
 		MessageBroker.getInstance().publish("TOPIC", new Integer(1));
 	}
 	
+	@Test()
+	public void publishWithNoSubscribers() {
+		MessageBroker.getInstance().publish("NOSUBSCRIBERS", null);
+	}
+	
 }
