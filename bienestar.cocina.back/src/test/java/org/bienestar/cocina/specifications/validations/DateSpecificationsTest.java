@@ -11,55 +11,55 @@ public class DateSpecificationsTest {
 
 	@Test
 	public void separatorCharRight() {
-		CharSeparatorSpecification spec = new CharSeparatorSpecification("/");
+		Specification<String> spec = new CharSeparatorSpecification("/");
 		assertTrue(spec.isSatisfiedBy("02/04"));
 	}
 
 	@Test
 	public void separatorCharWrong() {
-		CharSeparatorSpecification spec = new CharSeparatorSpecification(")");
+		Specification<String> spec = new CharSeparatorSpecification(")");
 		assertFalse(spec.isSatisfiedBy("02/04"));
 	}
 
 	@Test
 	public void oneSeparatorRight() {
-		HasOneSeparator spec = new HasOneSeparator("/");
+		Specification<String> spec = new HasOneSeparator("/");
 		assertTrue(spec.isSatisfiedBy("02/04"));
 	}
 
 	@Test
 	public void oneSeparatorWrong() {
-		HasOneSeparator spec = new HasOneSeparator("/");
+		Specification<String> spec = new HasOneSeparator("/");
 		assertFalse(spec.isSatisfiedBy("02/04/2000"));
 	}
 
 	@Test
 	public void validMonth() {
-		IsMonth spec = new IsMonth("/");
+		Specification<String> spec = new IsMonth("/");
 		assertTrue(spec.isSatisfiedBy("02/04"));
 	}
 
 	@Test
 	public void invalidMonth() {
-		IsMonth spec = new IsMonth("/");
+		Specification<String> spec = new IsMonth("/");
 		assertFalse(spec.isSatisfiedBy("02/13"));
 	}
 
 	@Test
 	public void isFebruary() {
-		IsFebruary spec = new IsFebruary("/");
+		Specification<String> spec = new IsFebruary("/");
 		assertTrue(spec.isSatisfiedBy("03/02"));
 	}
 
 	@Test
 	public void is31DaysMonth() {
-		Is31DaysMonth spec = new Is31DaysMonth("/");
+		Specification<String> spec = new Is31DaysMonth("/");
 		assertTrue(spec.isSatisfiedBy("03/03"));
 	}
 
 	@Test
 	public void is30DaysMonth() {
-		Is30DaysMonth spec = new Is30DaysMonth("/");
+		Specification<String> spec = new Is30DaysMonth("/");
 		assertTrue(spec.isSatisfiedBy("03/04"));
 	}
 
