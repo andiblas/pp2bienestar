@@ -21,8 +21,18 @@ public class MessageBrokerTests {
 	}
 	
 	@Test()
-	public void publishMessageTest() {
-		
+	public void multipleSubscriptionTest()  {
+		MessageBroker.getInstance().subscribe("TOPIC", new Subscriber() {
+			public void onMessageReceived(Object message) {
+				Assert.assertEquals(new Integer(1), (Integer) message);
+			}
+		});
+		MessageBroker.getInstance().subscribe("TOPIC", new Subscriber() {
+			public void onMessageReceived(Object message) {
+				Assert.assertEquals(new Integer(1), (Integer) message);
+			}
+		});
+		MessageBroker.getInstance().publish("TOPIC", new Integer(1));
 	}
 	
 }
