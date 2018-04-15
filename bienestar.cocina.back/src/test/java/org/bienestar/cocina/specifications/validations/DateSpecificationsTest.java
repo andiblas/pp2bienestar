@@ -112,7 +112,8 @@ public class DateSpecificationsTest {
 	}
 	
 	@Test
-	public void isNot31daysMonth() {
-		assertFalse(new Is31DaysMonth("/").isSatisfiedBy("30/04"));
+	public void is31daysMonth() {
+		Specification<String> is31DaysMonth = new Is31DaysMonth("/");
+		assertFalse(is31DaysMonth.not(is31DaysMonth).isSatisfiedBy("30/05"));
 	}
 }
