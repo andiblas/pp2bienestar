@@ -28,7 +28,7 @@ public class MessageBroker {
 		}
 	}
 
-	public void send(String topic, Object message) {
+	public void publish(String topic, Object message) {
 		if (!subscriptions.containsKey(topic))
 			return;
 
