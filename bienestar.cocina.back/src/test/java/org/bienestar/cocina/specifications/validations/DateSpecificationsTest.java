@@ -11,13 +11,13 @@ public class DateSpecificationsTest {
 
 	@Test
 	public void separatorCharRight() {
-		Specification<String> spec = new CharSeparatorSpecification("/");
+		Specification<String> spec = new IsValidSeparator("/");
 		assertTrue(spec.isSatisfiedBy("02/04"));
 	}
 
 	@Test
 	public void separatorCharWrong() {
-		Specification<String> spec = new CharSeparatorSpecification(")");
+		Specification<String> spec = new IsValidSeparator(")");
 		assertFalse(spec.isSatisfiedBy("02/04"));
 	}
 
