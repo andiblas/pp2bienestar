@@ -4,17 +4,22 @@ import java.util.ResourceBundle;
 
 public class MessageResource {
 
+	private static MessageResource instance;
 	
-	private static ResourceBundle bundle;
+	private ResourceBundle bundle;
 	
-	private MessageResource() {
-		
+	private MessageResource(ResourceBundle bundle) {
+		this.bundle = bundle;
 	}
 	
-	public static String getMessage(String key) {
-		if(bundle == null) {
-			bundle = ResourceBundle.getBundle("messages");
+	public static MessageResource getInstance() {
+		if(instance == null) {
+			instance = new MessageResource(ResourceBundle.getBundle("messages"));
 		}
+		return instance;
+	}
+	
+	public String getMessage(String key) {
 		String message = bundle.getString(key);
 		return message != null ? message : "";
 	}
