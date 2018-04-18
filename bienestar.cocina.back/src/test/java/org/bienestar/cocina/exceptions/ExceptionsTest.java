@@ -29,4 +29,10 @@ public class ExceptionsTest {
 		Exception ex = new TooManySeparatorException();
 		assertEquals("S\u00f3lo se admite un separador", ex.getMessage());
 	}
+	
+	@Test
+	public void openCircuit() {
+		Exception ex = new OpenCircuitException();
+		assertEquals("Circuito abierto", ex.getMessage());
+	}
 }
