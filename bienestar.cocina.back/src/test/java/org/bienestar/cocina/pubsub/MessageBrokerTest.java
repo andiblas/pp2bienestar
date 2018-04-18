@@ -12,7 +12,7 @@ public class MessageBrokerTest {
 	public void setUp() {
 	}
 	
-	@Test()
+	@Test
 	public void subscriptionTest()  {
 		MessageBroker.getInstance().subscribe("CONSUMO", new Subscriber() {
 			public void onMessageReceived(Object message) {
@@ -29,7 +29,7 @@ public class MessageBrokerTest {
 		MessageBroker.getInstance().publish("CONSUMO", cons);
 	}
 	
-	@Test()
+	@Test
 	public void multipleSubscriptionTest()  {
 		MessageBroker.getInstance().subscribe("CONSUMO", new Subscriber() {
 			public void onMessageReceived(Object message) {
@@ -52,7 +52,7 @@ public class MessageBrokerTest {
 		MessageBroker.getInstance().publish("CONSUMO", cons);
 	}
 	
-	@Test()
+	@Test
 	public void publishWithNoSubscribers() {
 		MessageBroker.getInstance().publish("NOSUBSCRIBERS", null);
 	}
