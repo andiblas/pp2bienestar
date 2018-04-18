@@ -1,37 +1,25 @@
 package org.bienestar.cocina.breaker;
 
-import org.bienestar.cocina.exceptions.OpenCircuitException;
 import org.bienestar.cocina.exceptions.SendingException;
 import org.bienestar.cocina.messages.SendMessageCommand;
-import org.junit.Before;
 import org.junit.Test;
 
 public class CircuitBreakerTest {
 
-	private CircuitBreaker breaker;
 
-	@Before
-	public void setUp() {
-	}
-
-	@Test(expected = OpenCircuitException.class)
+	@Test(expected = SendingException.class)
 	public void breakerOpen() throws Exception {
-		breaker = new CircuitBreaker(new SendMessageCommand(new Sender() {
+		CircuitBreaker breaker = new CircuitBreaker(new SendMessageCommand(new Sender() {
 			public void send(String message) throws SendingException {
 				throw new SendingException("errorSender");
 			}
 		}, "mensaje"), 1, 5000);
-		try {
-			breaker.run();
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
 		breaker.run();
 	}
 
-	@Test(expected = Exception.class)
+	@Test(expected = SendingException.class)
 	public void breakerHalf() throws Exception {
-		breaker = new CircuitBreaker(new SendMessageCommand(new Sender() {
+		CircuitBreaker breaker = new CircuitBreaker(new SendMessageCommand(new Sender() {
 			public void send(String message) throws SendingException {
 				throw new SendingException("errorSender");
 			}
