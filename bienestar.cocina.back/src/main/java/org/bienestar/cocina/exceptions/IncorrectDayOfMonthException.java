@@ -1,6 +1,6 @@
 package org.bienestar.cocina.exceptions;
 
-public class IncorrectDayOfMonthException extends Exception {
+public class IncorrectDayOfMonthException extends AbstractException {
 
 	/**
 	 * 

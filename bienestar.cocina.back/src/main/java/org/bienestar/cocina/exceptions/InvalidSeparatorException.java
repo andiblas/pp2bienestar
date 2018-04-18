@@ -1,6 +1,6 @@
 package org.bienestar.cocina.exceptions;
 
-public class InvalidSeparatorException extends Exception{
+public class InvalidSeparatorException extends AbstractException{
 
 	/**
 	 * 

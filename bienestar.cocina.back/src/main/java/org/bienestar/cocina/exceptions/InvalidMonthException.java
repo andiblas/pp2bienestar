@@ -1,6 +1,6 @@
 package org.bienestar.cocina.exceptions;
 
-public class InvalidMonthException extends Exception{
+public class InvalidMonthException extends AbstractException{
 
 	/**
 	 * 

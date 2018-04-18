@@ -1,6 +1,6 @@
 package org.bienestar.cocina.exceptions;
 
-public class TooManySeparatorException extends Exception{
+public class TooManySeparatorException extends AbstractException{
 
 	/**
 	 * 
