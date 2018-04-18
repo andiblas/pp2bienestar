@@ -10,6 +10,6 @@ public class TooManySeparatorException extends Exception{
 	private static final long serialVersionUID = 1L;
 
 	public TooManySeparatorException() {
-		super(MessageResource.getInstance().getMessage("ex.oneseparator"));
+		super(MessageResource.getMessage("ex.oneseparator"));
 	}
 }

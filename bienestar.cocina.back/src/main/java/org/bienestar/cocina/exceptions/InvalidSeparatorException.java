@@ -10,6 +10,6 @@ public class InvalidSeparatorException extends Exception{
 	private static final long serialVersionUID = 1L;
 
 	public InvalidSeparatorException() {
-		super(MessageResource.getInstance().getMessage("ex.invalidseparator"));
+		super(MessageResource.getMessage("ex.invalidseparator"));
 	}
 }
