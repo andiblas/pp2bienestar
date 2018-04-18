@@ -17,7 +17,7 @@ public class ResourcesTest {
 
 	@Test
 	public void findKeyOK() {
-		MessageResource resource = MessageResource.getInstance();
+		MessageResource resource = MessageResource.getInstance(new Locale("es", "AR"));
 		String message = resource.getMessage("ex.invalidseparator");
 		assertEquals("Separador inv\u00e1lido", message);
 	}
@@ -31,7 +31,7 @@ public class ResourcesTest {
 	
 	@Test
 	public void findKeyNOK() {
-		MessageResource resource = MessageResource.getInstance();
+		MessageResource resource = MessageResource.getInstance(new Locale("es", "AR"));
 		String message = resource.getMessage("no.exists");
 		assertEquals("", message);
 	}
