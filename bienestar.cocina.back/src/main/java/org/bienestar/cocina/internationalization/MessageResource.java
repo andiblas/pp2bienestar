@@ -1,5 +1,6 @@
 package org.bienestar.cocina.internationalization;
 
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
 public class MessageResource {
@@ -20,7 +21,13 @@ public class MessageResource {
 	}
 	
 	public String getMessage(String key) {
-		String message = bundle.getString(key);
-		return message != null ? message : "";
+		String message;
+		try {
+			message = bundle.getString(key);
+			
+		} catch (MissingResourceException e) {
+			message = "";
+		}
+		return message;
 	}
 }
