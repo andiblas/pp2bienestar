@@ -1,5 +1,6 @@
 package org.bienestar.cocina.internationalization;
 
+import java.util.Locale;
 import java.util.MissingResourceException;
 import java.util.ResourceBundle;
 
@@ -15,7 +16,7 @@ public class MessageResource {
 	
 	public static MessageResource getInstance() {
 		if(instance == null) {
-			instance = new MessageResource(ResourceBundle.getBundle("messages"));
+			instance = new MessageResource(ResourceBundle.getBundle("messages", Locale.ENGLISH));
 		}
 		return instance;
 	}
