@@ -8,7 +8,6 @@ public class ConsumptionListener implements Subscriber {
 	public void onMessageReceived(Object message) {
 		Consumption consumption = (Consumption) message;
 		
-		
 	}
 	
 }
