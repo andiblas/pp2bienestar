@@ -9,9 +9,7 @@ public class InvalidMonthException extends Exception{
 	 */
 	private static final long serialVersionUID = 1L;
 
-	private static String mensaje = MessageResource.getMessage("ex.mesinvalido");
-	
 	public InvalidMonthException() {
-		super(mensaje);
+		super(MessageResource.getMessage("ex.mesinvalido"));
 	}
 }
