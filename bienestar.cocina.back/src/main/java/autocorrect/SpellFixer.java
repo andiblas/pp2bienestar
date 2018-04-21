@@ -14,11 +14,15 @@ public class SpellFixer {
 
 	public SpellFixer(Map<Character, List<String>> repository) throws IOException {
 		this.repository = repository;
-		comparator = (entry1, entry2) ->
-			entry1.getValue() > entry2.getValue()
-				|| (entry1.getValue() == entry2.getValue() && entry1.getKey().length() < entry2.getKey().length())
-				? 1
-				: -1;
+		comparator = new Comparator<Entry<String, Integer>>() {
+			@Override
+			public int compare(Entry<String, Integer> entry1, Entry<String, Integer> entry2) {
+				return entry1.getValue() > entry2.getValue()
+					|| (entry1.getValue() == entry2.getValue() && entry1.getKey().length() < entry2.getKey().length())
+					? 1
+					: -1;
+			}
+		};
 	}
 
 	public String sugerencia(String keyword) {
