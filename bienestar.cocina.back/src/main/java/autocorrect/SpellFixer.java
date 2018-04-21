@@ -7,6 +7,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
+import org.bienestar.cocina.specifications.validations.Equals;
+import org.bienestar.cocina.specifications.validations.GreaterThan;
+
 public class SpellFixer {
 
 	private Map<Character, List<String>> repository;
@@ -44,8 +47,11 @@ public class SpellFixer {
 		Comparator<Entry<String, Integer>> comparator = new Comparator<Entry<String, Integer>>() {
 			@Override
 			public int compare(Entry<String, Integer> entry1, Entry<String, Integer> entry2) {
-				return entry1.getValue() > entry2.getValue() || (entry1.getValue() == entry2.getValue()
-						&& entry1.getKey().length() < entry2.getKey().length()) ? 1 : -1;
+				return new GreaterThan(entry1.getValue()).isSatisfiedBy(entry2.getValue())
+						|| (new Equals(entry1.getValue()).isSatisfiedBy(entry2.getValue())
+								&& new GreaterThan(entry2.getKey().length()).isSatisfiedBy(entry1.getKey().length()))
+										? 1
+										: -1;
 			}
 		};
 		ResourceReader reader = new ResourceReader(
