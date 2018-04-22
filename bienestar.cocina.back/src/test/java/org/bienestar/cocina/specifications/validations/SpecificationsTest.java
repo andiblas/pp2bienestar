@@ -9,7 +9,7 @@ import org.bienestar.cocina.specifications.generic.NotSpecification;
 import org.bienestar.cocina.specifications.generic.Specification;
 import org.junit.Test;
 
-public class DateSpecificationsTest {
+public class SpecificationsTest {
 
 	@Test
 	public void separatorCharRight() {
@@ -131,6 +131,18 @@ public class DateSpecificationsTest {
 		Specification<String> isFutureDate = new IsFutureDate("/");
 		String inputString = String.format("%s/%s", LocalDate.now().getDayOfMonth() + 1, LocalDate.now().getMonth().getValue());
 		assertTrue(isFutureDate.isSatisfiedBy(inputString));
+	}
+	
+	@Test
+	public void GreaterThan() {
+		Specification<Integer> spec = new GreaterThan(2);
+		assertTrue(spec.isSatisfiedBy(3));
+	}
+	
+	@Test
+	public void Equals() {
+		Specification<Integer> spec = new Equals(1);
+		assertTrue(spec.isSatisfiedBy(1));
 	}
 	
 }
