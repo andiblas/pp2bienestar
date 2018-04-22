@@ -13,7 +13,6 @@ public class ConsumptionVerifier {
 
 	public ConsumptionVerifier(ConsumptionRepository consumptionRepository) {
 		this.consumptionRepository = consumptionRepository;
-
 	}
 
 	public void RegisterConsumption(Consumption consumption, Integer commensal) throws ConsumptionOutOfRangeException {
