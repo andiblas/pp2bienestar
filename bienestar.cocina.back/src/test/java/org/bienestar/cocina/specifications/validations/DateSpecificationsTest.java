@@ -133,4 +133,10 @@ public class DateSpecificationsTest {
 		assertTrue(isFutureDate.isSatisfiedBy(inputString));
 	}
 	
+	@Test
+	public void isNotFutureDate() {
+		Specification<String> isFutureDate = new IsFutureDate("/");
+		String inputString = String.format("%s/%s", LocalDate.now().getDayOfMonth() + 1, LocalDate.now().getMonth().getValue());
+		assertFalse(isFutureDate.isSatisfiedBy(inputString));
+	}
 }
