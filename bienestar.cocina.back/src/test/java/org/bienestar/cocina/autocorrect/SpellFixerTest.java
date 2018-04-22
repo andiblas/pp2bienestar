@@ -31,7 +31,7 @@ public class SpellFixerTest {
 			}
 		};
 		String filePath = new File("").getAbsolutePath();
-		reader = new ResourceReader(filePath.concat("\\big.txt"));
+		reader = new ResourceReader(filePath.concat(File.separator + "big.txt"));
 		spelling = new SpellFixer(reader.getWords(), comparator);
 	}
 
