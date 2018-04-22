@@ -12,7 +12,7 @@ public class GreaterThan extends AbstractSpecification<Integer>{
 	}
 
 	public boolean isSatisfiedBy(Integer t) {
-		return t > value;
+		return value > t;
 	}
 
 }

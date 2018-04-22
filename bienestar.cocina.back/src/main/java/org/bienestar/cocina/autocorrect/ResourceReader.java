@@ -1,7 +1,6 @@
-package autocorrect;
+package org.bienestar.cocina.autocorrect;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -20,10 +19,10 @@ public class ResourceReader {
 		BufferedReader in = new BufferedReader(new FileReader(path));
 		Pattern p = Pattern.compile("\\w+");
 		for (String temp = ""; temp != null; temp = in.readLine()) {
-			Matcher m = p.matcher(temp.toLowerCase());
+			Matcher m = p.matcher(temp);
 			while (m.find()) {
 				String word = m.group();
-				for (Character c : word.toCharArray()) {
+				for (Character c : word.toLowerCase().toCharArray()) {
 					List<String> lista;
 					if (getWords().containsKey(c)) {
 						lista = getWords().get(c);
