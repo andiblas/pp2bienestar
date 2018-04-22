@@ -11,7 +11,7 @@ import org.bienestar.cocina.domain.MeasureType;
 import org.bienestar.cocina.exceptions.InvalidIngredientQuantityException;
 import org.bienestar.cocina.specifications.validations.IsValueAnInteger;
 
-public class ConsumptionBuilder {
+public final class ConsumptionBuilder {
 
 	public static Consumption build(Ingredient ingredient, Double quantity) throws InvalidIngredientQuantityException {
 		if (quantity <= 0)

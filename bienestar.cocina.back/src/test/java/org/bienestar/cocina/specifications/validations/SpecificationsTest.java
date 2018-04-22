@@ -136,6 +136,22 @@ public class SpecificationsTest {
 	}
 
 	@Test
+	public void isPastDate() {
+		Specification<String> isFutureDate = new IsFutureDate("/");
+		String inputString = String.format("%s/%s", LocalDate.now().getDayOfMonth() - 1,
+				LocalDate.now().getMonth().getValue());
+		assertFalse(isFutureDate.isSatisfiedBy(inputString));
+	}
+
+	@Test
+	public void isPresentDate() {
+		Specification<String> isFutureDate = new IsFutureDate("/");
+		String inputString = String.format("%s/%s", LocalDate.now().getDayOfMonth(),
+				LocalDate.now().getMonth().getValue());
+		assertFalse(isFutureDate.isSatisfiedBy(inputString));
+	}
+
+	@Test
 	public void GreaterThan() {
 		Specification<Integer> spec = new GreaterThan(2);
 		assertTrue(spec.isSatisfiedBy(3));
@@ -145,13 +161,5 @@ public class SpecificationsTest {
 	public void Equals() {
 		Specification<Integer> spec = new Equals(1);
 		assertTrue(spec.isSatisfiedBy(1));
-	}
-
-	@Test
-	public void isNotFutureDate() {
-		Specification<String> isFutureDate = new IsFutureDate("/");
-		String inputString = String.format("%s/%s", LocalDate.now().getDayOfMonth() + 1,
-				LocalDate.now().getMonth().getValue());
-		assertFalse(isFutureDate.isSatisfiedBy(inputString));
 	}
 }
