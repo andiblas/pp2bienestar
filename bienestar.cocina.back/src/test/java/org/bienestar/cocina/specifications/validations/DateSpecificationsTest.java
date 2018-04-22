@@ -3,6 +3,8 @@ package org.bienestar.cocina.specifications.validations;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
+import java.time.LocalDate;
+
 import org.bienestar.cocina.specifications.generic.NotSpecification;
 import org.bienestar.cocina.specifications.generic.Specification;
 import org.junit.Test;
@@ -123,4 +125,12 @@ public class DateSpecificationsTest {
 		Specification<String> is31DaysMonth = new Is31DaysMonth("/");
 		assertFalse(is31DaysMonth.not(is31DaysMonth).isSatisfiedBy("30/05"));
 	}
+	
+	@Test
+	public void isFutureDate() {
+		Specification<String> isFutureDate = new IsFutureDate("/");
+		String inputString = String.format("%s/%s", LocalDate.now().getDayOfMonth() + 1, LocalDate.now().getMonth().getValue());
+		assertTrue(isFutureDate.isSatisfiedBy(inputString));
+	}
+	
 }
