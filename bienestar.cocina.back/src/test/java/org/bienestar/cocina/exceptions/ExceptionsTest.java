@@ -2,10 +2,28 @@ package org.bienestar.cocina.exceptions;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.Locale;
+
+import org.junit.AfterClass;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class ExceptionsTest {
 
+	private static Locale previousLocale;
+	
+	@BeforeClass
+	public static void start() {
+		previousLocale = Locale.getDefault();
+		Locale.setDefault(new Locale("es", "AR"));
+	}
+	
+	@AfterClass
+	public static void end() {
+		Locale.setDefault(previousLocale);
+	}
+	
+	
 	@Test
 	public void invalidSeparator() {
 		Exception ex = new InvalidSeparatorException();
