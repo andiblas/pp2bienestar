@@ -75,4 +75,11 @@ public class ConsumptionBuilderTest {
 		ConsumptionBuilder.build(ingr, 0D);
 	}
 	
+	@Test(expected = InvalidIngredientQuantityException.class)
+	public void invalidQuantityUnitIngredientConsumptionTest() throws InvalidIngredientQuantityException {
+		Ingredient ingr = buildMockIngredient();
+		ingr.setMeasureType(MeasureType.UNIT);
+		ConsumptionBuilder.build(ingr, 0.5D);
+	}
+	
 }
