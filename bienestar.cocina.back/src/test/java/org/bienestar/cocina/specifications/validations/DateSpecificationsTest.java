@@ -134,9 +134,16 @@ public class DateSpecificationsTest {
 	}
 	
 	@Test
-	public void isNotFutureDate() {
+	public void isPastDate() {
 		Specification<String> isFutureDate = new IsFutureDate("/");
-		String inputString = String.format("%s/%s", LocalDate.now().getDayOfMonth() + 1, LocalDate.now().getMonth().getValue());
+		String inputString = String.format("%s/%s", LocalDate.now().getDayOfMonth() - 1, LocalDate.now().getMonth().getValue());
+		assertFalse(isFutureDate.isSatisfiedBy(inputString));
+	}
+	
+	@Test
+	public void isPresentDate() {
+		Specification<String> isFutureDate = new IsFutureDate("/");
+		String inputString = String.format("%s/%s", LocalDate.now().getDayOfMonth(), LocalDate.now().getMonth().getValue());
 		assertFalse(isFutureDate.isSatisfiedBy(inputString));
 	}
 }
