@@ -1,6 +1,8 @@
 package org.bienestar.cocina.autocorrect;
 
 import java.io.IOException;
+import java.text.Normalizer;
+import java.text.Normalizer.Form;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
@@ -28,7 +30,8 @@ public class SpellFixer {
 		}
 		if (!candidates.isEmpty()) {
 			return candidates.entrySet().stream().sorted(comparator).map(x -> x.getKey())
-					.filter(x -> x.toLowerCase().contains(keyword.toLowerCase())).collect(Collectors.toList());
+					.filter(x -> Normalizer.normalize(x, Form.NFD).toLowerCase().contains(keyword.toLowerCase()))
+					.collect(Collectors.toList());
 		}
 		return null;
 	}
