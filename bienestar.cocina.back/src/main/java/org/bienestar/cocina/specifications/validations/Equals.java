@@ -11,7 +11,6 @@ public class Equals extends AbstractSpecification<Integer> {
 		this.value = value;
 	}
 
-	@Override
 	public boolean isSatisfiedBy(Integer t) {
 		// TODO Auto-generated method stub
 		return value == t;

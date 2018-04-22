@@ -13,7 +13,6 @@ public class GreaterThan extends AbstractSpecification<Integer>{
 	}
 
 
-	@Override
 	public boolean isSatisfiedBy(Integer t) {
 		return t > value;
 	}

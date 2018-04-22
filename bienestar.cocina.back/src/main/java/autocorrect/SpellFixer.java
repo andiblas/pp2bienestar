@@ -45,7 +45,6 @@ public class SpellFixer {
 		String input2 = "poshio";
 		String input3 = "poyo";
 		Comparator<Entry<String, Integer>> comparator = new Comparator<Entry<String, Integer>>() {
-			@Override
 			public int compare(Entry<String, Integer> entry1, Entry<String, Integer> entry2) {
 				return new GreaterThan(entry1.getValue()).isSatisfiedBy(entry2.getValue())
 						|| (new Equals(entry1.getValue()).isSatisfiedBy(entry2.getValue())
