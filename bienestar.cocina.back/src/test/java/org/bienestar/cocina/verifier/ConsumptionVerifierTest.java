@@ -60,5 +60,14 @@ public class ConsumptionVerifierTest {
 	public void input200g() throws ConsumptionOutOfRangeException {
 		doConsumption(200d);
 	}
-
+	
+	@Test
+	public void inputInvalidIngredient() throws ConsumptionOutOfRangeException {
+		ConsumptionVerifier verifier = getConsumptionVerifier();
+		Ingredient badIngredient = new Ingredient();
+		Consumption consumption = new Consumption();
+		consumption.setIngredient(badIngredient);
+		consumption.setQuantity(10d);
+		verifier.RegisterConsumption(consumption, 10);
+	}
 }
