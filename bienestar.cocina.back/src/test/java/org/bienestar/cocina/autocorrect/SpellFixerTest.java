@@ -8,8 +8,8 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Map.Entry;
 
-import org.bienestar.cocina.specifications.validations.Equals;
-import org.bienestar.cocina.specifications.validations.GreaterThan;
+import org.bienestar.cocina.specifications.validations.IsEquals;
+import org.bienestar.cocina.specifications.validations.IsGreaterThan;
 import org.junit.Test;
 
 public class SpellFixerTest {
@@ -23,9 +23,9 @@ public class SpellFixerTest {
 		comparator = new Comparator<Entry<String, Integer>>() {
 			@Override
 			public int compare(Entry<String, Integer> entry1, Entry<String, Integer> entry2) {
-				return new GreaterThan(entry1.getValue()).isSatisfiedBy(entry2.getValue())
-						|| (new Equals(entry1.getValue()).isSatisfiedBy(entry2.getValue())
-								&& new GreaterThan(entry2.getKey().length()).isSatisfiedBy(entry1.getKey().length()))
+				return new IsGreaterThan(entry1.getValue()).isSatisfiedBy(entry2.getValue())
+						|| (new IsEquals(entry1.getValue()).isSatisfiedBy(entry2.getValue())
+								&& new IsGreaterThan(entry2.getKey().length()).isSatisfiedBy(entry1.getKey().length()))
 										? 1
 										: -1;
 			}

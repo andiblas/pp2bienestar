@@ -2,16 +2,16 @@ package org.bienestar.cocina.specifications.validations;
 
 import org.bienestar.cocina.specifications.generic.AbstractSpecification;
 
-public class GreaterThanDouble extends AbstractSpecification<Double> {
+public class IsGreaterThan extends AbstractSpecification<Integer> {
 
-	private Double value;
+	private Integer value;
 
-	public GreaterThanDouble(Double value) {
+	public IsGreaterThan(Integer value) {
 		super();
 		this.value = value;
 	}
 
-	public boolean isSatisfiedBy(Double t) {
+	public boolean isSatisfiedBy(Integer t) {
 		return value < t;
 	}
 }

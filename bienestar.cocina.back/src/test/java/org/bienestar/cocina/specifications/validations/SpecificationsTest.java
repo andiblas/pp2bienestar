@@ -153,13 +153,13 @@ public class SpecificationsTest {
 
 	@Test
 	public void GreaterThan() {
-		Specification<Integer> spec = new GreaterThan(2);
+		Specification<Integer> spec = new IsGreaterThan(2);
 		assertTrue(spec.isSatisfiedBy(3));
 	}
 
 	@Test
 	public void Equals() {
-		Specification<Integer> spec = new Equals(1);
+		Specification<Integer> spec = new IsEquals(1);
 		assertTrue(spec.isSatisfiedBy(1));
 	}
 }
