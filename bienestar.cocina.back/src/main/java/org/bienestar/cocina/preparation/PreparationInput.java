@@ -20,7 +20,7 @@ public class PreparationInput {
 		preparationRepository.getPreparations().add(preparation);
 	}
 
-	public List<String> getPreparationInput() {
+	public List<String> getPreparations() {
 		return preparationRepository.getPreparations().stream()
 				.map(x -> x.getPreparation()).collect(Collectors.toList());
 
