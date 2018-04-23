@@ -15,7 +15,7 @@ public class ConsumptionVerifier {
 		this.consumptionRepository = consumptionRepository;
 	}
 
-	public void RegisterConsumption(Consumption consumption, Integer commensal) throws ConsumptionOutOfRangeException {
+	public void registerConsumption(Consumption consumption, Integer commensal) throws ConsumptionOutOfRangeException {
 		OptionalDouble average = consumptionRepository.getConsumptions().stream()
 				.filter(x -> x.getIngredient() == consumption.getIngredient()).mapToDouble(x -> x.getQuantity())
 				.average();

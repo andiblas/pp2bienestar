@@ -1,7 +1,5 @@
 package org.bienestar.cocina.verifier;
 
-import java.util.Map.Entry;
-
 import org.bienestar.cocina.domain.Consumption;
 import org.bienestar.cocina.domain.Ingredient;
 import org.bienestar.cocina.domain.MeasureType;
@@ -33,7 +31,7 @@ public class ConsumptionVerifierTest {
 		Consumption consumption = new Consumption();
 		consumption.setIngredient(ingredient);
 		consumption.setQuantity(quantity);
-		verifier.RegisterConsumption(consumption, 10);
+		verifier.registerConsumption(consumption, 10);
 	}
 
 	@Test(expected = ConsumptionOutOfRangeException.class)
@@ -68,6 +66,6 @@ public class ConsumptionVerifierTest {
 		Consumption consumption = new Consumption();
 		consumption.setIngredient(badIngredient);
 		consumption.setQuantity(10d);
-		verifier.RegisterConsumption(consumption, 10);
+		verifier.registerConsumption(consumption, 10);
 	}
 }
