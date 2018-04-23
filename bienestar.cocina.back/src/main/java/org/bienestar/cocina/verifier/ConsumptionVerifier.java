@@ -15,7 +15,7 @@ public class ConsumptionVerifier {
 		this.consumptionRepository = consumptionRepository;
 	}
 
-	public void RegisterConsumption(Consumption consumption, Integer commensal) throws ConsumptionOutOfRangeException {
+	public void RegisterConsumption(Consumption consumption, Integer diners) throws ConsumptionOutOfRangeException {
 		OptionalDouble average = consumptionRepository.getConsumptions().stream()
 				.filter(x -> x.getIngredient() == consumption.getIngredient()).mapToDouble(x -> x.getQuantity())
 				.average();
@@ -24,7 +24,7 @@ public class ConsumptionVerifier {
 			Double tolerance = value * 0.20;
 			Double min = value - tolerance;
 			Double max = value + tolerance;
-			Double unitConsumption = consumption.getQuantity() / commensal;
+			Double unitConsumption = consumption.getQuantity() / diners;
 			if (new GreaterThanDouble(max).or(new LesserThanDouble(min)).isSatisfiedBy(unitConsumption)) {
 				throw new ConsumptionOutOfRangeException();
 			}
