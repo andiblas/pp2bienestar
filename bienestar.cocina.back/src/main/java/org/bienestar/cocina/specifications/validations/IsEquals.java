@@ -2,11 +2,11 @@ package org.bienestar.cocina.specifications.validations;
 
 import org.bienestar.cocina.specifications.generic.AbstractSpecification;
 
-public class Equals extends AbstractSpecification<Integer> {
+public class IsEquals extends AbstractSpecification<Integer> {
 
 	private Integer value;
 	
-	public Equals(Integer value) {
+	public IsEquals(Integer value) {
 		super();
 		this.value = value;
 	}

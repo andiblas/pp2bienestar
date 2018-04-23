@@ -4,8 +4,8 @@ import java.util.OptionalDouble;
 
 import org.bienestar.cocina.domain.Consumption;
 import org.bienestar.cocina.exceptions.ConsumptionOutOfRangeException;
-import org.bienestar.cocina.specifications.validations.GreaterThanDouble;
-import org.bienestar.cocina.specifications.validations.LesserThanDouble;
+import org.bienestar.cocina.specifications.validations.IsGreaterThanDouble;
+import org.bienestar.cocina.specifications.validations.IsLesserThanDouble;
 
 public class ConsumptionVerifier {
 
@@ -25,7 +25,7 @@ public class ConsumptionVerifier {
 			Double min = value - tolerance;
 			Double max = value + tolerance;
 			Double unitConsumption = consumption.getQuantity() / diners;
-			if (new GreaterThanDouble(max).or(new LesserThanDouble(min)).isSatisfiedBy(unitConsumption)) {
+			if (new IsGreaterThanDouble(max).or(new IsLesserThanDouble(min)).isSatisfiedBy(unitConsumption)) {
 				throw new ConsumptionOutOfRangeException();
 			}
 		}
