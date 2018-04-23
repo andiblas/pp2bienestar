@@ -1,5 +1,8 @@
 package org.bienestar.cocina.preparationType;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.bienestar.cocina.domain.PreparationType;
 
 public class PreparationTypeInput {
@@ -17,8 +20,9 @@ public class PreparationTypeInput {
 		preparationTypeRepository.getPreparationTypes().add(preparationType);
 	}
 
-	public String getPreparationType() {
-		return preparationTypeRepository.getPreparationTypes().toString();
+	public List<String> getPreparationType() {
+		return preparationTypeRepository.getPreparationTypes().stream()
+				.map(x -> x.getType()).collect(Collectors.toList());
 	}
 
 }
