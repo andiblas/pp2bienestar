@@ -1,7 +1,6 @@
 package org.bienestar.cocina.diners;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.fail;
 
 import org.junit.Test;
 
@@ -12,7 +11,7 @@ public class DinersTest {
 		DinersRepository dinerRepository = new DinersRepository();
 		DinerInput dinersInput = new DinerInput(dinerRepository);
 		dinersInput.regiterQuantity(10);
-		assertEquals(10, dinersInput.getDinersQuantity());
+		assertEquals(new Integer(10), dinersInput.getDinersQuantity());
 	}
 
 	// Si se ingresa la letra ‘A’ o ‘a’ como cantidad de comensales, el sistema
