@@ -2,8 +2,6 @@ package org.bienestar.cocina.preparationType;
 
 import static org.junit.Assert.assertEquals;
 
-
-
 public class PreparationTypeTest {
 
 	PreparationTypeRepository preparationTypeRepository = new PreparationTypeRepository();
