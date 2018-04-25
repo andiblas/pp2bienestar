@@ -13,12 +13,10 @@ import java.util.stream.Collectors;
 public class SpellFixer {
 
 	private Map<Character, List<String>> repository;
-	private Comparator<Entry<String, Integer>> comparator;
 
-	public SpellFixer(Map<Character, List<String>> repository, Comparator<Entry<String, Integer>> comparator)
+	public SpellFixer(Map<Character, List<String>> repository)
 			throws IOException {
 		this.repository = repository;
-		this.comparator = comparator;
 	}
 
 	public List<String> getBestFit(String keyword) {
@@ -29,7 +27,7 @@ public class SpellFixer {
 			}
 		}
 		if (!candidates.isEmpty()) {
-			return candidates.entrySet().stream().sorted(comparator).map(x -> x.getKey())
+			return candidates.entrySet().stream().map(x -> x.getKey())
 					.filter(x -> Normalizer.normalize(x, Form.NFD).toLowerCase().contains(keyword.toLowerCase()))
 					.collect(Collectors.toList());
 		}

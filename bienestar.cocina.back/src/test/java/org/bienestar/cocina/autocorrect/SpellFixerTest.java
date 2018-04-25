@@ -4,35 +4,20 @@ import static org.junit.Assert.assertTrue;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map.Entry;
 
-import org.bienestar.cocina.specifications.validations.IsEquals;
-import org.bienestar.cocina.specifications.validations.IsGreaterThan;
 import org.junit.Test;
 
 public class SpellFixerTest {
 
-	private Comparator<Entry<String, Integer>> comparator;
 	private ResourceReader reader;
 	private SpellFixer spelling;
 
 	public SpellFixerTest() throws IOException {
 		super();
-		comparator = new Comparator<Entry<String, Integer>>() {
-			@Override
-			public int compare(Entry<String, Integer> entry1, Entry<String, Integer> entry2) {
-				return new IsGreaterThan(entry1.getValue()).isSatisfiedBy(entry2.getValue())
-						|| (new IsEquals(entry1.getValue()).isSatisfiedBy(entry2.getValue())
-								&& new IsGreaterThan(entry2.getKey().length()).isSatisfiedBy(entry1.getKey().length()))
-										? 1
-										: -1;
-			}
-		};
 		String filePath = new File("").getAbsolutePath();
 		reader = new ResourceReader(filePath.concat(File.separator + "big.txt"));
-		spelling = new SpellFixer(reader.getWords(), comparator);
+		spelling = new SpellFixer(reader.getWords());
 	}
 
 	@Test
