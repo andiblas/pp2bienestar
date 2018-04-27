@@ -7,9 +7,9 @@ import java.io.IOException;
 
 import org.bienestar.cocina.configuration.Configuration;
 import org.bienestar.cocina.exceptions.InvalidPropertieValue;
-import org.bienestar.cocina.specifications.validations.IsPositive;
+import org.bienestar.cocina.specifications.validations.IsGreaterThan;
+import org.bienestar.cocina.specifications.validations.IsLesserThan;
 import org.bienestar.cocina.specifications.validations.IsValidInteger;
-import org.bienestar.cocina.specifications.validations.IsValidLength;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -30,19 +30,19 @@ public class ConfigurationTest {
 	@Test(expected = InvalidPropertieValue.class)
 	public void invalidValue101() throws IOException,InvalidPropertieValue {
 		Configuration config = new Configuration("config/config101.properties");
-		config.getProperty(porcentajeTolerancia,new IsValidLength(2));
+		config.getNumericProperty(porcentajeTolerancia,new IsGreaterThan(0).and(new IsLesserThan(100)));
 	}
 	
 	@Test(expected = InvalidPropertieValue.class)
 	public void noKey() throws IOException,InvalidPropertieValue {
 		Configuration config = new Configuration("config/config_nokey.properties");
-		config.getProperty(porcentajeTolerancia, new IsValidLength(2));
+		config.getProperty(porcentajeTolerancia, new IsValidInteger());
 	}
 	
 	@Test(expected = InvalidPropertieValue.class)
 	public void invalidNegative1() throws IOException,InvalidPropertieValue {
 		Configuration config = new Configuration("config/config-1.properties");
-		config.getProperty(porcentajeTolerancia,new IsPositive());
+		config.getNumericProperty(porcentajeTolerancia,new IsGreaterThan(0).and(new IsLesserThan(100)));
 	}
 	
 	@Test(expected = InvalidPropertieValue.class)

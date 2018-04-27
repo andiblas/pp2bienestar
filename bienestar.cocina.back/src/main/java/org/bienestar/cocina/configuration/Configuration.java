@@ -37,5 +37,12 @@ public class Configuration {
 		return prop;
 	}
 	
-	
+	public String getNumericProperty(String key, Specification<Integer> spec) throws InvalidPropertieValue {
+		String prop = properties.getProperty(key);
+		Integer value = Integer.valueOf(prop);
+		if(!spec.isSatisfiedBy(value)) {
+			throw new InvalidPropertieValue(key);
+		}
+		return prop;
+	}
 }
