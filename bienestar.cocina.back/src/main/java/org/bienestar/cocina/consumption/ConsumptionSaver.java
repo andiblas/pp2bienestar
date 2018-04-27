@@ -5,7 +5,7 @@ import org.bienestar.cocina.pubsub.MessageBroker;
 
 public class ConsumptionSaver {
 	
-	public void Save(Consumption consumption) {
+	public void save(Consumption consumption) {
 		
 		//logica para guardar el consumo
 		
