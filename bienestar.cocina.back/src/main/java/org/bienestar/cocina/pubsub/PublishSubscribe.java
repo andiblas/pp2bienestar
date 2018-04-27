@@ -3,15 +3,15 @@ package org.bienestar.cocina.pubsub;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-public class MessageBroker {
+public class PublishSubscribe {
 
-	private static MessageBroker instance;
+	private static PublishSubscribe instance;
 	
-	private MessageBroker() {}
+	private PublishSubscribe() {}
 	
-	public static MessageBroker getInstance() {
+	public static PublishSubscribe getInstance() {
 		if (instance == null) {
-			instance = new MessageBroker();
+			instance = new PublishSubscribe();
 		}
 		return instance;
 	}

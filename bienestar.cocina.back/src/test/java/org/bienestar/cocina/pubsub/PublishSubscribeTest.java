@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class MessageBrokerTest {
+public class PublishSubscribeTest {
 
 	@Before
 	public void setUp() {
@@ -14,7 +14,7 @@ public class MessageBrokerTest {
 	
 	@Test
 	public void subscriptionTest()  {
-		MessageBroker.getInstance().subscribe("CONSUMO", new Subscriber() {
+		PublishSubscribe.getInstance().subscribe("CONSUMO", new Subscriber() {
 			public void onMessageReceived(Object message) {
 				Assert.assertEquals("Azucar", ((Consumption) message).getIngredient().getName());
 				Assert.assertEquals(new Double(1), ((Consumption) message).getQuantity());
@@ -26,18 +26,18 @@ public class MessageBrokerTest {
 		ingr.setName("Azucar");
 		cons.setIngredient(ingr);
 		cons.setQuantity(new Double(1));
-		MessageBroker.getInstance().publish("CONSUMO", cons);
+		PublishSubscribe.getInstance().publish("CONSUMO", cons);
 	}
 	
 	@Test
 	public void multipleSubscriptionTest()  {
-		MessageBroker.getInstance().subscribe("CONSUMO", new Subscriber() {
+		PublishSubscribe.getInstance().subscribe("CONSUMO", new Subscriber() {
 			public void onMessageReceived(Object message) {
 				Assert.assertEquals("Azucar", ((Consumption) message).getIngredient().getName());
 				Assert.assertEquals(new Double(1), ((Consumption) message).getQuantity());
 			}
 		});
-		MessageBroker.getInstance().subscribe("CONSUMO", new Subscriber() {
+		PublishSubscribe.getInstance().subscribe("CONSUMO", new Subscriber() {
 			public void onMessageReceived(Object message) {
 				Assert.assertEquals("Azucar", ((Consumption) message).getIngredient().getName());
 				Assert.assertEquals(new Double(1), ((Consumption) message).getQuantity());
@@ -49,12 +49,12 @@ public class MessageBrokerTest {
 		ingr.setName("Azucar");
 		cons.setIngredient(ingr);
 		cons.setQuantity(new Double(1));
-		MessageBroker.getInstance().publish("CONSUMO", cons);
+		PublishSubscribe.getInstance().publish("CONSUMO", cons);
 	}
 	
 	@Test
 	public void publishWithNoSubscribers() {
-		MessageBroker.getInstance().publish("NOSUBSCRIBERS", null);
+		PublishSubscribe.getInstance().publish("NOSUBSCRIBERS", null);
 	}
 	
 }

@@ -1,10 +1,7 @@
 package org.bienestar.cocina.messages;
 
 import org.bienestar.cocina.breaker.CircuitBreaker;
-import org.bienestar.cocina.breaker.CircuitBreakerName;
-import org.bienestar.cocina.breaker.CircuitBreakerRegistry;
 import org.bienestar.cocina.breaker.Sender;
-import org.bienestar.cocina.exceptions.SendingException;
 
 public class MessageDispatcher {
 

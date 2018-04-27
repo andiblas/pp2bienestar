@@ -1,7 +1,7 @@
 package org.bienestar.cocina.consumption;
 
 import org.bienestar.cocina.domain.Consumption;
-import org.bienestar.cocina.pubsub.MessageBroker;
+import org.bienestar.cocina.pubsub.PublishSubscribe;
 
 public class ConsumptionSaver {
 	
@@ -9,7 +9,7 @@ public class ConsumptionSaver {
 		
 		//logica para guardar el consumo
 		
-		MessageBroker.getInstance().publish("CONSUMPTION_SAVED", consumption);
+		PublishSubscribe.getInstance().publish("CONSUMPTION_SAVED", consumption);
 		
 	}
 	
