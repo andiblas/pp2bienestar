@@ -11,11 +11,10 @@ public class PreparationTest {
 	@Test
 	public void preparationTest() {
 		PreparationRepository preparationRepository = new PreparationRepository();
-		PreparationInput preparationInput = new PreparationInput(
-				preparationRepository);
-		preparationInput.registerPreparation("Leche Chocolatada");;
-		assertTrue(preparationInput.getPreparations().contains(
-				"Leche Chocolatada"));
+		PreparationInput preparationInput = new PreparationInput(preparationRepository);
+		preparationInput.registerPreparation("Leche Chocolatada");
+		
+		assertTrue(preparationInput.getPreparations().contains("Leche Chocolatada"));
 	}
 
 }
