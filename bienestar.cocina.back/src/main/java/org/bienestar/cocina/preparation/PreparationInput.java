@@ -11,7 +11,6 @@ public class PreparationInput {
 
 	public PreparationInput(PreparationRepository preparationRepository) {
 		this.preparationRepository = preparationRepository;
-
 	}
 
 	public void registerPreparation(String preparationInput) {
@@ -23,7 +22,6 @@ public class PreparationInput {
 	public List<String> getPreparations() {
 		return preparationRepository.getPreparations().stream()
 				.map(x -> x.getPreparation()).collect(Collectors.toList());
-
 	}
 
 }
