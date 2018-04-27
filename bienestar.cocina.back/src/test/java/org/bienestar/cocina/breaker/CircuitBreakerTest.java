@@ -33,9 +33,12 @@ public class CircuitBreakerTest {
 	@Test
 	public void registerBreaker() {
 		CircuitBreaker cb = new CircuitBreaker(1, 1);
+		CircuitBreaker cb2 = new CircuitBreaker(1, 1);
 		CircuitBreakerRegistry.getInstance().register(CircuitBreakerName.TEST_BREAKER.getNombre(), cb);
+		CircuitBreakerRegistry.getInstance().register(CircuitBreakerName.TEST_BREAKER.getNombre(), cb2);
 		CircuitBreaker cbRegistred = CircuitBreakerRegistry.getInstance().getCircuitBreaker(CircuitBreakerName.TEST_BREAKER.getNombre());
 		assertEquals(cb, cbRegistred);
 	}
+	
 	
 }
