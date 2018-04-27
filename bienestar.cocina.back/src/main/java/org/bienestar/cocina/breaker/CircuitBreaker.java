@@ -13,13 +13,16 @@ public class CircuitBreaker {
 	private Integer errorCount;
 	private CircuitBreakerState state = CircuitBreakerState.CLOSE;
 
-	public CircuitBreaker(CircuitBreakerCommand command, Integer errorLimit,
-			Integer timeout) {
+	public CircuitBreaker(Integer errorLimit, Integer timeout) {
 		super();
-		this.command = command;
 		this.errorLimit = errorLimit;
 		this.timeout = timeout;
 		this.errorCount = 0;
+	}
+
+	public CircuitBreaker(CircuitBreakerCommand command, Integer errorLimit, Integer timeout) {
+		this(errorLimit, timeout);
+		this.command = command;
 	}
 
 	public void run() throws Exception {
@@ -35,7 +38,7 @@ public class CircuitBreaker {
 				changeState(CircuitBreakerState.CLOSE);
 				errorCount = 0;
 			}
-			
+
 		} catch (OpenCircuitException e) {
 			throw e;
 		} catch (Exception e) {
@@ -76,4 +79,3 @@ public class CircuitBreaker {
 	}
 
 }
-

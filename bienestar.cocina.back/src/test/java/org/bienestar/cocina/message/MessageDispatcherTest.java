@@ -10,7 +10,7 @@ public class MessageDispatcherTest {
 
 	@Test()
 	public void messageDispatchTest() throws Exception {
-		CircuitBreaker cb = new CircuitBreaker(null, 2, 1000);
+		CircuitBreaker cb = new CircuitBreaker(2, 1000);
 		Sender sender = new Sender() {
 			public void send(String message) throws SendingException {
 			}
