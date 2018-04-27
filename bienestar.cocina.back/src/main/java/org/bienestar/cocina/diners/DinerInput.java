@@ -13,7 +13,7 @@ public class DinerInput {
 
 	}
 
-	public void regiterQuantity(String quantity) throws InvalidQuantityException {
+	public void registerQuantity(String quantity) throws InvalidQuantityException {
 		Diner diner = new Diner();
 		if (!new IsValidInteger().isSatisfiedBy(quantity)) {
 			throw new InvalidQuantityException();
