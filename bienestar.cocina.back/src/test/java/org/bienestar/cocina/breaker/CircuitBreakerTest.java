@@ -1,11 +1,12 @@
 package org.bienestar.cocina.breaker;
 
+import static org.junit.Assert.assertEquals;
+
 import org.bienestar.cocina.exceptions.SendingException;
 import org.bienestar.cocina.messages.SendMessageCommand;
 import org.junit.Test;
 
 public class CircuitBreakerTest {
-
 
 	@Test(expected = SendingException.class)
 	public void breakerOpen() throws Exception {
@@ -28,4 +29,13 @@ public class CircuitBreakerTest {
 		Thread.sleep(2);
 		breaker.run();
 	}
+	
+	@Test
+	public void registerBreaker() {
+		CircuitBreaker cb = new CircuitBreaker(1, 1);
+		CircuitBreakerRegistry.getInstance().register(CircuitBreakerName.TEST_BREAKER.getNombre(), cb);
+		CircuitBreaker cbRegistred = CircuitBreakerRegistry.getInstance().getCircuitBreaker(CircuitBreakerName.TEST_BREAKER.getNombre());
+		assertEquals(cb, cbRegistred);
+	}
+	
 }
