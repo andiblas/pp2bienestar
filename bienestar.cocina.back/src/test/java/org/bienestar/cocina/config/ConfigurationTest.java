@@ -64,4 +64,17 @@ public class ConfigurationTest {
 		assertEquals("20", prop);
 	}
 	
+	@Test
+	public void validValue100() throws IOException, InvalidPropertieValue {
+		Configuration config = new Configuration("config/config_100.properties");
+		String prop = config.getNumericProperty(porcentajeTolerancia,new IsGreaterThan(0).and(new IsLesserThan(101)));
+		assertEquals("100", prop);
+	}
+	
+	@Test
+	public void validValue1() throws IOException, InvalidPropertieValue {
+		Configuration config = new Configuration("config/config_1.properties");
+		String prop = config.getProperty(porcentajeTolerancia,new IsValidInteger());
+		assertEquals("1", prop);
+	}
 }
