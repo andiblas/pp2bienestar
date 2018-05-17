@@ -8,5 +8,6 @@
   <modules>
     <module>bienestar.cocina.front</module>
     <module>bienestar.cocina.back</module>
+    <module>bienestar.cocina.back.messenger</module>
   </modules>
 </project>
