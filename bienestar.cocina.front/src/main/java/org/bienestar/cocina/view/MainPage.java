@@ -23,9 +23,10 @@ public class MainPage extends View implements Observer {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setExtendedState(getExtendedState() | JFrame.MAXIMIZED_BOTH);
 		getContentPane().setLayout(null);
+		getContentPane().setBounds(0, 0, getWidth(), getHeight());
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 97, 21);
+		menuBar.setBounds(0, 0, getWidth(), 21);
 		getContentPane().add(menuBar);
 		
 		mnRegistro = new JMenu("Registro");
