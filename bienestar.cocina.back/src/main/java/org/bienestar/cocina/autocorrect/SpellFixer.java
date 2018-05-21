@@ -13,15 +13,10 @@ import org.bienestar.cocina.domain.Preparation;
 public class SpellFixer {
 
 	private Map<Character, List<String>> repository;
-	private Preparation preparation;
 	
 	public SpellFixer(Map<Character, List<String>> repository)
 			throws IOException {
 		this.repository = repository;
-	}
-
-	public void setPreparation(Preparation preparation) {
-		this.preparation = preparation;
 	}
 
 	public List<String> getBestFit(String keyword) {
