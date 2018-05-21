@@ -12,6 +12,7 @@ import org.bienestar.cocina.view.base.View;
 
 import com.toedter.calendar.JDateChooser;
 import com.toedter.calendar.JTextFieldDateEditor;
+import java.awt.Window.Type;
 
 public class ExportFilePage extends View {
 
@@ -22,8 +23,9 @@ public class ExportFilePage extends View {
 	private JDateChooser fechaHasta;
 
 	public ExportFilePage() {
+		setResizable(false);
 		setTitle("Exportar a CSV");
-		setBounds(100, 100, 404, 150);
+		setBounds(100, 100, 405, 170);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setLocationRelativeTo(null);
 		getContentPane().setLayout(null);
