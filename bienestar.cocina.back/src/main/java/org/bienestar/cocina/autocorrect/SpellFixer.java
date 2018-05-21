@@ -3,20 +3,25 @@ package org.bienestar.cocina.autocorrect;
 import java.io.IOException;
 import java.text.Normalizer;
 import java.text.Normalizer.Form;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.stream.Collectors;
+
+import org.bienestar.cocina.domain.Preparation;
 
 public class SpellFixer {
 
 	private Map<Character, List<String>> repository;
-
+	private Preparation preparation;
+	
 	public SpellFixer(Map<Character, List<String>> repository)
 			throws IOException {
 		this.repository = repository;
+	}
+
+	public void setPreparation(Preparation preparation) {
+		this.preparation = preparation;
 	}
 
 	public List<String> getBestFit(String keyword) {
