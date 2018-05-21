@@ -23,7 +23,7 @@ public class CSVExporter {
 		this.repository = repository;
 	}
 
-	public String Export(LocalDate from, LocalDate to) throws IOException {
+	public String export(LocalDate from, LocalDate to) throws IOException {
 		String fileName = filenameAssigner.getName(from, to);
 		List<String> content = repository.getPreparationRegistries().stream()
 				.filter(x -> x.getDate().isAfter(from) && x.getDate().isBefore(to))
