@@ -38,7 +38,7 @@ public class ApplicationController {
 	
 	public void navigate(ApplicationContext appCtx) {
 		if (appCtx == null)
-			throw new IllegalArgumentException("appCtx");
+			throw new IllegalArgumentException("appCtx cannot be null");
 		
 		navigationActionMap.get(appCtx.getActionReq()).OnNavigationAction(appCtx);
 	}
