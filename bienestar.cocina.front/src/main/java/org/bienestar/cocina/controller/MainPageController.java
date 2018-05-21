@@ -3,6 +3,7 @@ package org.bienestar.cocina.controller;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import org.bienestar.cocina.controller.base.Controller;
 import org.bienestar.cocina.controller.navigation.ActionRequest;
 import org.bienestar.cocina.controller.navigation.ApplicationContext;
 import org.bienestar.cocina.controller.navigation.ApplicationController;

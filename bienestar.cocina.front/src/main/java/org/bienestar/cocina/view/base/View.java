@@ -1,4 +1,4 @@
-package org.bienestar.cocina.view;
+package org.bienestar.cocina.view.base;
 
 import java.util.Observer;
 

@@ -1,6 +1,6 @@
-package org.bienestar.cocina.controller;
+package org.bienestar.cocina.controller.base;
 
-import org.bienestar.cocina.view.View;
+import org.bienestar.cocina.view.base.View;
 
 public abstract class Controller<T extends View> {
 

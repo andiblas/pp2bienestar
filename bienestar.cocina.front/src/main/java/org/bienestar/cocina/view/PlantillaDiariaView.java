@@ -9,6 +9,8 @@ import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
+import org.bienestar.cocina.view.base.View;
+
 public class PlantillaDiariaView extends View{
 
 	/**

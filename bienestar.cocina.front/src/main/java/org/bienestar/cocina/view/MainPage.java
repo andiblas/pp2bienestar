@@ -9,12 +9,17 @@ import javax.swing.JFrame;
 import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 
+import org.bienestar.cocina.view.base.View;
+import javax.swing.JMenuItem;
+
 public class MainPage extends View implements Observer {
 
 
 	private static final long serialVersionUID = 1L;
-	private JMenu mnRegistro;
+	private JMenu mnConsumos;
 	private JMenu mnExportacion;
+	private JMenuItem mntmRegistro;
+	private JMenuItem mntmExportarACsv;
 	
 	public MainPage() {
 		setMinimumSize(new Dimension(700, 500));
@@ -29,24 +34,28 @@ public class MainPage extends View implements Observer {
 		menuBar.setBounds(0, 0, getWidth(), 21);
 		getContentPane().add(menuBar);
 		
-		mnRegistro = new JMenu("Registro");
-		menuBar.add(mnRegistro);
+		mnConsumos = new JMenu("Consumos");
+		menuBar.add(mnConsumos);
+		
+		mntmRegistro = new JMenuItem("Registro");
+		mnConsumos.add(mntmRegistro);
 		
 		mnExportacion = new JMenu("Exportacion");
 		menuBar.add(mnExportacion);
+		
+		mntmExportarACsv = new JMenuItem("Exportar a CSV");
+		mnExportacion.add(mntmExportarACsv);
 	}
 
 	public void addMnRegistroListener(ActionListener action) {
-		mnRegistro.addActionListener(action);
+		mntmRegistro.addActionListener(action);
 	}
 	
 	public void addMnExportacionListener(ActionListener action) {
-		mnExportacion.addActionListener(action);
+		mntmExportarACsv.addActionListener(action);
 	}
 	
-	
 	public void update(Observable arg0, Object arg1) {
-		// TODO Auto-generated method stub
 		
 	}
 }
