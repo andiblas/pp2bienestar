@@ -6,6 +6,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+import org.bienestar.cocina.domain.Preparation;
 import org.junit.Test;
 
 public class SpellFixerTest {
@@ -18,6 +19,7 @@ public class SpellFixerTest {
 		String filePath = new File("").getAbsolutePath();
 		reader = new ResourceReader(filePath.concat(File.separator + "big.txt"));
 		spelling = new SpellFixer(reader.getWords());
+
 	}
 
 	@Test
@@ -46,79 +48,115 @@ public class SpellFixerTest {
 		assertTrue(result.contains("Azúcar"));
 		assertTrue(result.size() == 1);
 	}
-	
-	//input inteligente 2.0
+
+	// input inteligente 2.0
 	@Test
-	public void inputa20() {//te con leche
+	public void inputa20() {// te con leche
+		Preparation prep = new Preparation();
+		prep.setName("Te con leche");
+		spelling.setPreparation(prep);
 		List<String> result = spelling.getBestFit("a");
-		assertTrue(result.indexOf("Azúcar")==0);
-		assertTrue(result.indexOf("Agua")==1);
-		assertTrue(result.indexOf("Arroz")==2);
-		assertTrue(result.indexOf("Carne Picada")==3);
+		assertTrue(result.indexOf("Azúcar") == 0);
+		assertTrue(result.indexOf("Agua") == 1);
+		assertTrue(result.indexOf("Arroz") == 2);
+		assertTrue(result.indexOf("Carne Picada") == 3);
 	}
 
 	@Test
-	public void inputz20Te() {//te con leche
+	public void inputz20Te() {// te con leche
+		Preparation prep = new Preparation();
+		prep.setName("Te con leche");
+		spelling.setPreparation(prep);
 		List<String> result = spelling.getBestFit("z");
-		assertTrue(result.indexOf("Azúcar")==0);
-		assertTrue(result.indexOf("Arroz")==1);
+		assertTrue(result.indexOf("Azúcar") == 0);
+		assertTrue(result.indexOf("Arroz") == 1);
 	}
-	
+
 	@Test
-	public void inputz20Albondiga() {//Albondiga
+	public void inputz20Albondiga() {// Albondiga
+		Preparation prep = new Preparation();
+		prep.setName("Albondigas con arroz");
+		spelling.setPreparation(prep);
 		List<String> result = spelling.getBestFit("z");
-		assertTrue(result.indexOf("Azúcar")==1);
-		assertTrue(result.indexOf("Arroz")==0);
+		assertTrue(result.indexOf("Azúcar") == 1);
+		assertTrue(result.indexOf("Arroz") == 0);
 	}
+
 	@Test
-	public void input20Clbondiga() {//Albondiga
+	public void input20Clbondiga() {// Albondiga
+		Preparation prep = new Preparation();
+		prep.setName("Albondigas con arroz");
+		spelling.setPreparation(prep);
 		List<String> result = spelling.getBestFit("c");
-		assertTrue(result.indexOf("Carne Picada")==0);
-		assertTrue(result.indexOf("Azúcar")==1);
+		assertTrue(result.indexOf("Carne Picada") == 0);
+		assertTrue(result.indexOf("Azúcar") == 1);
 	}
+
 	@Test
-	public void input20CTe() {//Te con leche
+	public void input20CTe() {// Te con leche
+		Preparation prep = new Preparation();
+		prep.setName("Te con leche");
+		spelling.setPreparation(prep);
 		List<String> result = spelling.getBestFit("c");
-		assertTrue(result.indexOf("Azúcar")==0);
-		assertTrue(result.indexOf("Carne Picada")==1);
+		assertTrue(result.indexOf("Azúcar") == 0);
+		assertTrue(result.indexOf("Carne Picada") == 1);
 	}
-	
+
 	@Test
-	public void input20rTe() {//Te con leche
+	public void input20rTe() {// Te con leche
+		Preparation prep = new Preparation();
+		prep.setName("Te con leche");
+		spelling.setPreparation(prep);
 		List<String> result = spelling.getBestFit("r");
-		assertTrue(result.indexOf("Azúcar")==0);
-		assertTrue(result.indexOf("Carne Picada")==1);
+		assertTrue(result.indexOf("Azúcar") == 0);
+		assertTrue(result.indexOf("Carne Picada") == 1);
 	}
-	
+
 	@Test
-	public void input20rAlbondiga() {//Albondiga
+	public void input20rAlbondiga() {// Albondiga
+		Preparation prep = new Preparation();
+		prep.setName("Albondigas con arroz");
+		spelling.setPreparation(prep);
 		List<String> result = spelling.getBestFit("r");
-		assertTrue(result.indexOf("Carne Picada")==0);
-		assertTrue(result.indexOf("Azúcar")==1);
+		assertTrue(result.indexOf("Carne Picada") == 0);
+		assertTrue(result.indexOf("Azúcar") == 1);
 	}
+
 	@Test
-	public void input20pAlbondiga() {//Albondiga
+	public void input20pAlbondiga() {// Albondiga
+		Preparation prep = new Preparation();
+		prep.setName("Albondigas con arroz");
+		spelling.setPreparation(prep);
 		List<String> result = spelling.getBestFit("p");
-		assertTrue(result.indexOf("Carne Picada")==0);
-		assertTrue(result.indexOf("Leche en Polvo")==1);
+		assertTrue(result.indexOf("Carne Picada") == 0);
+		assertTrue(result.indexOf("Leche en Polvo") == 1);
 	}
-	
+
 	@Test
-	public void input20pTe() {//Te con leche
+	public void input20pTe() {// Te con leche
+		Preparation prep = new Preparation();
+		prep.setName("Te con leche");
+		spelling.setPreparation(prep);
 		List<String> result = spelling.getBestFit("p");
-		assertTrue(result.indexOf("Leche en Polvo")==0);
-		assertTrue(result.indexOf("Carne Picada")==1);
+		assertTrue(result.indexOf("Leche en Polvo") == 0);
+		assertTrue(result.indexOf("Carne Picada") == 1);
 	}
-	
+
 	@Test
-	public void input20AzuTe() {//te con leche
+	public void input20AzuTe() {// te con leche
+		Preparation prep = new Preparation();
+		prep.setName("Te con leche");
+		spelling.setPreparation(prep);
 		List<String> result = spelling.getBestFit("Azu");
 		assertTrue(result.contains("Azúcar"));
 		assertTrue(result.size() == 1);
 	}
-	
+
 	@Test
-	public void input20AzuAlbondiga() {//Albondiga
+	public void input20AzuAlbondiga() {// Albondiga
+		Preparation prep = new Preparation();
+		prep.setName("Albondigas con arroz");
+		spelling.setPreparation(prep);
 		List<String> result = spelling.getBestFit("Azu");
 		assertTrue(result.contains("Azúcar"));
 		assertTrue(result.size() == 1);
