@@ -6,9 +6,8 @@ public class DayExpression implements Expression {
 
 	@Override
 	public void interpret(DateContext contexto) {
-		String[] splitted = contexto.getExpression().split("/");
-		splitted[0] = StringUtils.rightPad(splitted[0], 2, "0");
-		contexto.setExpression(splitted.toString());
+		String day = StringUtils.leftPad(contexto.getDay(), 2, "0");
+		contexto.setDay(day);
 	}
 
 }

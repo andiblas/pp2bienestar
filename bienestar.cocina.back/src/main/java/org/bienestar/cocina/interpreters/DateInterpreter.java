@@ -10,6 +10,6 @@ public class DateInterpreter {
 		for(Expression expression : expressions){
 			expression.interpret(context);
 		}
-		return context.getExpression();
+		return context.getInterpretedDate();
 	}
 }
