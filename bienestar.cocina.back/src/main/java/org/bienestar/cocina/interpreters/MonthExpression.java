@@ -1,13 +1,17 @@
 package org.bienestar.cocina.interpreters;
 
+import java.io.IOException;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.commons.lang3.StringUtils;
+import org.bienestar.cocina.configuration.Configuration;
 
 public class MonthExpression implements Expression {
 
+	private Map<String, String> monthDictionary;
+	
 	public MonthExpression() {
 		monthDictionary = new HashMap<>();
 		monthDictionary.put("enero", "01");
@@ -39,17 +43,51 @@ public class MonthExpression implements Expression {
 	@Override
 	public void interpret(DateContext contexto) {
 		if (contexto.getMonth() == null) {
-			Integer currentMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
-			contexto.setMonth(currentMonth.toString());
+			try {
+				Configuration config = new Configuration("config/config.properties");
+				String fechaDefault = config.getProperty("fechaDefault");
+				if(fechaDefault != null){
+					contexto.setMonth(this.getMonth(contexto.getDay(), fechaDefault));
+				} else {
+					this.getCurrentMonth();
+				}
+			} catch (IOException e) {
+				this.getCurrentMonth();
+			}
 		} else if (!StringUtils.isNumeric(contexto.getMonth())) {
 			contexto.setMonth(this.convertToMonth(contexto.getMonth()));
 		}
 	}
 
+	private String getCurrentMonth(){
+		Integer currentMonth = Calendar.getInstance().get(Calendar.MONTH) + 1;
+		return this.formattedMonth(currentMonth);
+	}
+	
 	private String convertToMonth(String month) {
 		String lowerCaseMonth = month.toLowerCase();
 		return monthDictionary.get(lowerCaseMonth);
 	}
 
-	private Map<String, String> monthDictionary;
+	private String getMonth(String givenDay, String dateDefault) {
+		String[] splitted = dateDefault.split("/");
+		Integer monthDefault = Integer.valueOf(splitted[1]);
+		Integer monthBefore = monthDefault - 1;
+		
+		if(this.isDayDefaultBefore(givenDay, splitted[0])){
+			return this.formattedMonth(monthBefore);
+		} else {
+			return this.formattedMonth(monthDefault);
+		}
+	}
+	
+	private String formattedMonth (Integer month){
+		return StringUtils.leftPad(month.toString(), 2, "0");
+	}
+	
+	private boolean isDayDefaultBefore(String givenDay, String dayDefault){
+		Integer intGivenDay = Integer.valueOf(givenDay);
+		Integer intDayDefault = Integer.valueOf(dayDefault);
+		return intGivenDay > intDayDefault;
+	}
 }
