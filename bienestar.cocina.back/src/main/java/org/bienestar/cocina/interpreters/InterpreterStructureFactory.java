@@ -12,6 +12,7 @@ public class InterpreterStructureFactory {
 		expressions.add(new ReplaceExpression(","));
 		expressions.add(new DeleteTermExpression());
 		expressions.add(new TermExpression());
+		expressions.add(new OrderTermExpression());
 		expressions.add(new DayExpression());
 		expressions.add(new MonthExpression());
 		expressions.add(new YearExpression());

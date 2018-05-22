@@ -8,6 +8,7 @@ public class DeleteTermExpression implements Expression{
 	public DeleteTermExpression() {
 		ignoredTerms = new ArrayList<>();
 		ignoredTerms.add("de");
+		ignoredTerms.add("");
 	}
 	
 	@Override
