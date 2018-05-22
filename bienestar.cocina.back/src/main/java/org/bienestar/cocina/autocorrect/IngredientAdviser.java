@@ -47,11 +47,19 @@ public class IngredientAdviser {
 				.collect(Collectors.toList());
 
 		Collections.sort(result, (x, y) -> {
-			System.out.println("x:" + x);
-			System.out.println("y:" + y);
-			int ret = ingredients.contains(x) ? -1 : (ingredients.contains(y) ? 1 : x.compareTo(y));
-			System.out.println("ret:" + ret);
-			return ret;
+			if (ingredients.contains(x)) {
+				if (ingredients.contains(y)) {
+					return x.compareTo(y);
+				} else {
+					return -1;
+				}
+			} else {
+				if (ingredients.contains(y)) {
+					return 1;
+				} else {
+					return x.compareTo(y);
+				}
+			}
 		});
 
 		return result;

@@ -1,5 +1,6 @@
 package org.bienestar.cocina.autocorrect;
 
+import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 import java.io.File;
@@ -40,7 +41,7 @@ public class IngredientAdviserTest {
 		saquitoC.setIngredient(saquito);
 		saquitoC.setQuantity(20d);
 		Ingredient lecheEnPolvo = new Ingredient();
-		lecheEnPolvo.setName("Leche en polvo");
+		lecheEnPolvo.setName("Leche en Polvo");
 		Consumption lechenEnPolvoC = new Consumption();
 		lechenEnPolvoC.setIngredient(lecheEnPolvo);
 		lechenEnPolvoC.setQuantity(100d);
@@ -95,7 +96,7 @@ public class IngredientAdviserTest {
 	public void inputAzu() {
 		List<String> result = adviser.getBestFit(null, "Azu");
 		assertTrue(result.contains("Azúcar"));
-		assertTrue(result.size() == 1);
+		assertEquals(1, result.size());
 	}
 
 	// input inteligente 2.0
@@ -104,10 +105,10 @@ public class IngredientAdviserTest {
 		Preparation prep = new Preparation();
 		prep.setName("Té con leche");
 		List<String> result = adviser.getBestFit(prep, "a");
-		assertTrue(result.indexOf("Azúcar") == 0);
-		assertTrue(result.indexOf("Agua") == 1);
-		assertTrue(result.indexOf("Arroz") == 2);
-		assertTrue(result.indexOf("Carne Picada") == 3);
+		assertEquals(0, result.indexOf("Agua"));
+		assertEquals(1, result.indexOf("Azúcar"));
+		assertEquals(2, result.indexOf("Arroz"));
+		assertEquals(3, result.indexOf("Carne Picada"));
 	}
 
 	@Test
@@ -115,8 +116,8 @@ public class IngredientAdviserTest {
 		Preparation prep = new Preparation();
 		prep.setName("Té con leche");
 		List<String> result = adviser.getBestFit(prep, "z");
-		assertTrue(result.indexOf("Azúcar") == 0);
-		assertTrue(result.indexOf("Arroz") == 1);
+		assertEquals(0, result.indexOf("Azúcar"));
+		assertEquals(1, result.indexOf("Arroz"));
 	}
 
 	@Test
@@ -124,8 +125,8 @@ public class IngredientAdviserTest {
 		Preparation prep = new Preparation();
 		prep.setName("Albóndigas con arroz");
 		List<String> result = adviser.getBestFit(prep, "z");
-		assertTrue(result.indexOf("Azúcar") == 1);
-		assertTrue(result.indexOf("Arroz") == 0);
+		assertEquals(0, result.indexOf("Arroz"));
+		assertEquals(1, result.indexOf("Azúcar"));
 	}
 
 	@Test
@@ -133,8 +134,8 @@ public class IngredientAdviserTest {
 		Preparation prep = new Preparation();
 		prep.setName("Albóndigas con arroz");
 		List<String> result = adviser.getBestFit(prep, "c");
-		assertTrue(result.indexOf("Carne Picada") == 0);
-		assertTrue(result.indexOf("Azúcar") == 1);
+		assertEquals(0, result.indexOf("Carne Picada"));
+		assertEquals(1, result.indexOf("Azúcar"));
 	}
 
 	@Test
@@ -142,8 +143,8 @@ public class IngredientAdviserTest {
 		Preparation prep = new Preparation();
 		prep.setName("Té con leche");
 		List<String> result = adviser.getBestFit(prep, "c");
-		assertTrue(result.indexOf("Azúcar") == 0);
-		assertTrue(result.indexOf("Carne Picada") == 1);
+		assertEquals(0, result.indexOf("Azúcar"));
+		assertEquals(1, result.indexOf("Leche en Polvo"));
 	}
 
 	@Test
@@ -151,8 +152,8 @@ public class IngredientAdviserTest {
 		Preparation prep = new Preparation();
 		prep.setName("Té con leche");
 		List<String> result = adviser.getBestFit(prep, "r");
-		assertTrue(result.indexOf("Azúcar") == 0);
-		assertTrue(result.indexOf("Carne Picada") == 1);
+		assertEquals(0, result.indexOf("Azúcar"));
+		assertEquals(1, result.indexOf("Arroz"));
 	}
 
 	@Test
@@ -160,8 +161,9 @@ public class IngredientAdviserTest {
 		Preparation prep = new Preparation();
 		prep.setName("Albóndigas con arroz");
 		List<String> result = adviser.getBestFit(prep, "r");
-		assertTrue(result.indexOf("Carne Picada") == 0);
-		assertTrue(result.indexOf("Azúcar") == 1);
+		assertEquals(0, result.indexOf("Arroz"));
+		assertEquals(1, result.indexOf("Carne Picada"));
+		assertEquals(2, result.indexOf("Azúcar"));
 	}
 
 	@Test
@@ -169,8 +171,8 @@ public class IngredientAdviserTest {
 		Preparation prep = new Preparation();
 		prep.setName("Albóndigas con arroz");
 		List<String> result = adviser.getBestFit(prep, "p");
-		assertTrue(result.indexOf("Carne Picada") == 0);
-		assertTrue(result.indexOf("Leche en Polvo") == 1);
+		assertEquals(0, result.indexOf("Carne Picada"));
+		assertEquals(1, result.indexOf("Leche en Polvo"));
 	}
 
 	@Test
@@ -178,8 +180,8 @@ public class IngredientAdviserTest {
 		Preparation prep = new Preparation();
 		prep.setName("Té con leche");
 		List<String> result = adviser.getBestFit(prep, "p");
-		assertTrue(result.indexOf("Leche en Polvo") == 0);
-		assertTrue(result.indexOf("Carne Picada") == 1);
+		assertEquals(0, result.indexOf("Leche en Polvo"));
+		assertEquals(1, result.indexOf("Carne Picada"));
 	}
 
 	@Test
@@ -188,7 +190,7 @@ public class IngredientAdviserTest {
 		prep.setName("Té con leche");
 		List<String> result = adviser.getBestFit(prep, "Azu");
 		assertTrue(result.contains("Azúcar"));
-		assertTrue(result.size() == 1);
+		assertEquals(1, result.size());
 	}
 
 	@Test
@@ -197,6 +199,6 @@ public class IngredientAdviserTest {
 		prep.setName("Albóndigas con arroz");
 		List<String> result = adviser.getBestFit(prep, "Azu");
 		assertTrue(result.contains("Azúcar"));
-		assertTrue(result.size() == 1);
+		assertEquals(1, result.size());
 	}
 }
