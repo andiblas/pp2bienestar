@@ -136,6 +136,7 @@ public class IngredientAdviserTest {
 		List<String> result = adviser.getBestFit(prep, "c");
 		assertEquals(0, result.indexOf("Carne Picada"));
 		assertEquals(1, result.indexOf("Azúcar"));
+		assertEquals(2, result.indexOf("Leche en Polvo"));//Agregado
 	}
 
 	@Test
@@ -145,6 +146,8 @@ public class IngredientAdviserTest {
 		List<String> result = adviser.getBestFit(prep, "c");
 		assertEquals(0, result.indexOf("Azúcar"));
 		assertEquals(1, result.indexOf("Leche en Polvo"));
+		assertEquals(2, result.indexOf("Carne Picada"));
+
 	}
 
 	@Test
@@ -154,6 +157,7 @@ public class IngredientAdviserTest {
 		List<String> result = adviser.getBestFit(prep, "r");
 		assertEquals(0, result.indexOf("Azúcar"));
 		assertEquals(1, result.indexOf("Arroz"));
+		assertEquals(2, result.indexOf("Carne Picada"));
 	}
 
 	@Test
