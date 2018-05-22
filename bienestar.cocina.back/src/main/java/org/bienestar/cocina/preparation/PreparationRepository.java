@@ -10,7 +10,6 @@ public class PreparationRepository {
 
 	public PreparationRepository() {
 		preparations = new ArrayList<Preparation>();
-
 	}
 
 	public List<Preparation> getPreparations() {

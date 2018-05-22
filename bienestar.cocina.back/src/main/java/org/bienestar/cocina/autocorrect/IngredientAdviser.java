@@ -2,6 +2,7 @@ package org.bienestar.cocina.autocorrect;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
@@ -27,32 +28,32 @@ public class IngredientAdviser {
 	public List<String> getBestFit(Preparation preparation, String keyword) {
 
 		List<String> result = spelling.getBestFit(keyword);
-		
-		if (preparation == null) return result;
-		
+
+		if (preparation == null)
+			return result;
+
 		return sortByPreparation(preparation, result);
 	}
 
 	private List<String> sortByPreparation(Preparation query, List<String> result) {
-		
-		Optional<Preparation> preparation = repository.getPreparations().stream().filter(x -> x.getName() == query.getName()).findFirst();
-		
-		if (!preparation.isPresent()) return result;
-		
-		List<Ingredient> ingredients = preparation.get().getConsumptions().stream().map(x -> x.getIngredient())
-				.collect(Collectors.toList());
-		
-		result.sort(new Comparator<String>() {
 
-			public int compare(String o1, String o2) {
-				if (ingredients.stream().anyMatch(x -> x.getName() == o1)) {
-					return 1;
-				} else {
-					return -1;
-				}
-			}
+		Optional<Preparation> preparation = repository.getPreparations().stream()
+				.filter(x -> x.getName() == query.getName()).findFirst();
+
+		if (!preparation.isPresent())
+			return result;
+
+		List<String> ingredients = preparation.get().getConsumptions().stream().map(x -> x.getIngredient().getName())
+				.collect(Collectors.toList());
+
+		Collections.sort(result, (x, y) -> {
+			System.out.println("x:" + x);
+			System.out.println("y:" + y);
+			int ret = ingredients.contains(x) ? -1 : (ingredients.contains(y) ? 1 : x.compareTo(y));
+			System.out.println("ret:" + ret);
+			return ret;
 		});
-		
+
 		return result;
 	}
 

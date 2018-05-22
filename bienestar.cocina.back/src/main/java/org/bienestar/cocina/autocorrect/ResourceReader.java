@@ -18,7 +18,7 @@ public class ResourceReader {
 		super();
 		BufferedReader in = new BufferedReader(new FileReader(path));
 		for (String temp = ""; temp != null; temp = in.readLine()) {
-			String[] words = temp.split(" ");
+			String[] words = temp.split(", ");
 			for (String item : words) {
 				String word = Normalizer.normalize(item, Form.NFD);
 				for (Character c : word.toLowerCase().toCharArray()) {
