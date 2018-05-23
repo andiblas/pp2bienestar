@@ -31,6 +31,12 @@ public class CSVExporterTest {
 		reg3.setDate(LocalDate.parse("2018-03-16"));
 		reg4.setDate(LocalDate.parse("2018-03-18"));
 		
+		reg1.setDiners(20);
+		reg2.setDiners(20);
+		reg3.setDiners(20);
+		reg4.setDiners(15);
+
+		
 		Preparation teConLeche = new Preparation();
 		Preparation albondigasArroz = new Preparation();
 		Preparation lecheChocolatada = new Preparation();
