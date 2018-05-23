@@ -18,7 +18,7 @@ import org.junit.Test;
 public class CSVExporterTest {
 
 	private CSVExporter exporter;
-	
+
 	public CSVExporterTest() {
 		PreparationRegistryRepository repository = new PreparationRegistryRepository();
 		PreparationRegistry reg1 = new PreparationRegistry();
@@ -30,13 +30,12 @@ public class CSVExporterTest {
 		reg2.setDate(LocalDate.parse("2018-03-16"));
 		reg3.setDate(LocalDate.parse("2018-03-16"));
 		reg4.setDate(LocalDate.parse("2018-03-18"));
-		
+
 		reg1.setDiners(20);
 		reg2.setDiners(20);
 		reg3.setDiners(20);
 		reg4.setDiners(15);
 
-		
 		Preparation teConLeche = new Preparation();
 		Preparation albondigasArroz = new Preparation();
 		Preparation lecheChocolatada = new Preparation();
@@ -47,75 +46,73 @@ public class CSVExporterTest {
 		Consumption azucarConsumption = new Consumption();
 		azucarConsumption.setIngredient(azucar);
 		azucarConsumption.setQuantity(300d);
-		
+
 		Ingredient saquito = new Ingredient();
 		saquito.setName("Saquito de Te");
-		Consumption saquitoConsumption=new Consumption();
+		Consumption saquitoConsumption = new Consumption();
 		saquitoConsumption.setIngredient(saquito);
 		saquitoConsumption.setQuantity(20d);
-		
+
 		Ingredient lecheEnPolvo = new Ingredient();
 		lecheEnPolvo.setName("Leche en Polvo");
-		Consumption lecheEnPolvoConsumption=new Consumption();
+		Consumption lecheEnPolvoConsumption = new Consumption();
 		lecheEnPolvoConsumption.setIngredient(lecheEnPolvo);
 		lecheEnPolvoConsumption.setQuantity(100d);
-		
+
 		Ingredient agua = new Ingredient();
 		agua.setName("Agua");
-		Consumption aguaConsumption=new Consumption();
+		Consumption aguaConsumption = new Consumption();
 		aguaConsumption.setIngredient(agua);
 		aguaConsumption.setQuantity(10d);
-		
-		Ingredient arroz=new Ingredient();
+
+		Ingredient arroz = new Ingredient();
 		arroz.setName("Arroz");
-		Consumption arrozConsumption=new Consumption();
+		Consumption arrozConsumption = new Consumption();
 		arrozConsumption.setIngredient(arroz);
 		arrozConsumption.setQuantity(1d);
-		
-		Ingredient carnePicada=new Ingredient();
+
+		Ingredient carnePicada = new Ingredient();
 		carnePicada.setName("Carne Picada");
-		Consumption carnePicadaConsumption=new Consumption();
+		Consumption carnePicadaConsumption = new Consumption();
 		carnePicadaConsumption.setIngredient(carnePicada);
 		carnePicadaConsumption.setQuantity(300d);
-		
-		Ingredient cacao=new Ingredient();
+
+		Ingredient cacao = new Ingredient();
 		cacao.setName("Cacao");
-		Consumption cacaoConsumption=new Consumption();
+		Consumption cacaoConsumption = new Consumption();
 		cacaoConsumption.setIngredient(cacao);
 		cacaoConsumption.setQuantity(100d);
-		
+
 		consumptions.add(azucarConsumption);
 		consumptions.add(saquitoConsumption);
 		consumptions.add(lecheEnPolvoConsumption);
 		consumptions.add(aguaConsumption);
-		
+
 		consumptions.add(arrozConsumption);
 		consumptions.add(carnePicadaConsumption);
 
 		consumptions.add(cacaoConsumption);
 
-		
-		
 		teConLeche.setConsumptions(consumptions);
 		albondigasArroz.setConsumptions(consumptions);
 		lecheChocolatada.setConsumptions(consumptions);
-		
+
 		reg1.setPreparation(teConLeche);
 		reg2.setPreparation(teConLeche);
 		reg3.setPreparation(albondigasArroz);
 		reg4.setPreparation(lecheChocolatada);
 		repository.getPreparationRegistries().add(reg1);
-		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(),
-				new PreparationRegistryTransformView(), repository);
+		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformView(),
+				repository);
 		repository.getPreparationRegistries().add(reg2);
-		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(),
-				new PreparationRegistryTransformView(), repository);
+		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformView(),
+				repository);
 		repository.getPreparationRegistries().add(reg3);
-		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(),
-				new PreparationRegistryTransformView(), repository);
+		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformView(),
+				repository);
 		repository.getPreparationRegistries().add(reg4);
-		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(),
-				new PreparationRegistryTransformView(), repository);
+		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformView(),
+				repository);
 	}
 
 	@Test
