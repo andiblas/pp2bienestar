@@ -33,11 +33,13 @@ public class ExportFilePage extends View {
 		fechaDesde = new JDateChooser();
 		fechaDesde.setBounds(85, 11, 120, 20);
 		((JTextFieldDateEditor) fechaDesde.getDateEditor()).setEditable(false);
-		fechaDesde.getJCalendar().setMinSelectableDate(new Date());
+		fechaDesde.setDate(new Date());
 		getContentPane().add(fechaDesde, null);
 
 		fechaHasta = new JDateChooser();
 		fechaHasta.setBounds(255, 11, 120, 20);
+		((JTextFieldDateEditor) fechaHasta.getDateEditor()).setEditable(false);
+		fechaHasta.setDate(new Date());
 		getContentPane().add(fechaHasta);
 
 		JLabel lblFechaDesde = new JLabel("Fecha desde");
