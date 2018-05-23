@@ -3,7 +3,6 @@ package org.bienestar.cocina;
 import javax.swing.SwingUtilities;
 
 import org.bienestar.cocina.controller.MainPageController;
-import org.bienestar.cocina.controller.base.Controller;
 import org.bienestar.cocina.view.MainPage;
 
 /**
@@ -18,7 +17,7 @@ public class App {
 
             public void run() {
                 MainPage view = new MainPage();
-                Controller<MainPage> controller = new MainPageController(view);
+                MainPageController controller = new MainPageController(view, null);
                 view.setVisible(true);
             }
         });

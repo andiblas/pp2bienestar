@@ -4,6 +4,8 @@ import java.util.HashMap;
 
 import org.bienestar.cocina.controller.ConsumptionRegisterController;
 import org.bienestar.cocina.controller.ExportFileController;
+import org.bienestar.cocina.model.ConsumptionRegisterModel;
+import org.bienestar.cocina.model.ExportModel;
 import org.bienestar.cocina.view.ConsumptionRegisterPage;
 import org.bienestar.cocina.view.ExportFilePage;
 
@@ -22,14 +24,14 @@ public class ApplicationController {
 		navigationActionMap.put(ActionRequest.NEW_CONSUMPTION_REGISTRATION, new NavigationAction() {
 			public void OnNavigationAction(ApplicationContext ctx) {
 				ConsumptionRegisterPage page = new ConsumptionRegisterPage();
-				ConsumptionRegisterController controller = new ConsumptionRegisterController(page);
+				ConsumptionRegisterController controller = new ConsumptionRegisterController(page, new ConsumptionRegisterModel());
 				page.setVisible(true);
 			}
 		});
 		navigationActionMap.put(ActionRequest.EXPORT_TO_FILE, new NavigationAction() {
 			public void OnNavigationAction(ApplicationContext ctx) {
 				ExportFilePage page = new ExportFilePage();
-				ExportFileController controller = new ExportFileController(page);
+				ExportFileController controller = new ExportFileController(page, new ExportModel());
 				page.setVisible(true);
 			}
 		});

@@ -4,13 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import org.bienestar.cocina.controller.base.Controller;
+import org.bienestar.cocina.model.base.Model;
 import org.bienestar.cocina.view.PlantillaDiariaView;
 
-public class PlanillaDiariaController extends Controller<PlantillaDiariaView>{
+public class PlanillaDiariaController extends Controller<PlantillaDiariaView, Model>{
 	
 
-	public PlanillaDiariaController(PlantillaDiariaView view) {
-		super(view);
+	public PlanillaDiariaController(PlantillaDiariaView view, Model model) {
+		super(view, model);
 		view.asociarEnviarListener(new EnviarListener());
 	}
 	
