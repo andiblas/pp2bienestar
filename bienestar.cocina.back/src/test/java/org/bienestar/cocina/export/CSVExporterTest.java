@@ -60,14 +60,54 @@ public class CSVExporterTest {
 		aguaConsumption.setIngredient(agua);
 		aguaConsumption.setQuantity(10d);
 		
+		Ingredient arroz=new Ingredient();
+		arroz.setName("Arroz");
+		Consumption arrozConsumption=new Consumption();
+		arrozConsumption.setIngredient(arroz);
+		arrozConsumption.setQuantity(1d);
+		
+		Ingredient carnePicada=new Ingredient();
+		carnePicada.setName("Carne Picada");
+		Consumption carnePicadaConsumption=new Consumption();
+		carnePicadaConsumption.setIngredient(carnePicada);
+		carnePicadaConsumption.setQuantity(300d);
+		
+		Ingredient cacao=new Ingredient();
+		cacao.setName("Cacao");
+		Consumption cacaoConsumption=new Consumption();
+		cacaoConsumption.setIngredient(cacao);
+		cacaoConsumption.setQuantity(100d);
+		
 		consumptions.add(azucarConsumption);
 		consumptions.add(saquitoConsumption);
 		consumptions.add(lecheEnPolvoConsumption);
 		consumptions.add(aguaConsumption);
+		
+		consumptions.add(arrozConsumption);
+		consumptions.add(carnePicadaConsumption);
+
+		consumptions.add(cacaoConsumption);
+
+		
+		
 		teConLeche.setConsumptions(consumptions);
+		albondigasArroz.setConsumptions(consumptions);
+		lecheChocolatada.setConsumptions(consumptions);
+		
 		reg1.setPreparation(teConLeche);
 		reg2.setPreparation(teConLeche);
+		reg3.setPreparation(albondigasArroz);
+		reg4.setPreparation(lecheChocolatada);
 		repository.getPreparationRegistries().add(reg1);
+		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(),
+				new PreparationRegistryTransformView(), repository);
+		repository.getPreparationRegistries().add(reg2);
+		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(),
+				new PreparationRegistryTransformView(), repository);
+		repository.getPreparationRegistries().add(reg3);
+		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(),
+				new PreparationRegistryTransformView(), repository);
+		repository.getPreparationRegistries().add(reg4);
 		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(),
 				new PreparationRegistryTransformView(), repository);
 	}
