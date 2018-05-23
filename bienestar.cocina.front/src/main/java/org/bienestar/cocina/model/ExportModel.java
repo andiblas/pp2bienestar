@@ -10,7 +10,6 @@ public class ExportModel extends Model {
 
 	public void export(LocalDate from, LocalDate to) {
 		CSVExporterFacade exporterFacade = new CSVExporterFacade();
-		
 		try {
 			exporterFacade.export(from, to);
 		} catch (IOException e) {
