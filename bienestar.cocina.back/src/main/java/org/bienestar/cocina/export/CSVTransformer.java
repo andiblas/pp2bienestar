@@ -1,6 +1,6 @@
 package org.bienestar.cocina.export;
 
-public interface TransformView<T> {
+public interface CSVTransformer<T> {
 
 	String transform(T value);
 

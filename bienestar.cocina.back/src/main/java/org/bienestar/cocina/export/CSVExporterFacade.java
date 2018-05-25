@@ -10,7 +10,7 @@ public class CSVExporterFacade {
 
 	public void export(LocalDate from, LocalDate to) throws IOException {
 		CSVExporter exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(),
-				new PreparationRegistryTransformView(),
+				new PreparationRegistryTransformer(),
 				RepositoryStore.getInstance().getPreparationRegistryRepository());
 
 		exporter.export(from, to);

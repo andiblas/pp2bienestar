@@ -102,23 +102,17 @@ public class CSVExporterTest {
 		reg3.setPreparation(albondigasArroz);
 		reg4.setPreparation(lecheChocolatada);
 		repository.getPreparationRegistries().add(reg1);
-		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformView(),
-				repository);
 		repository.getPreparationRegistries().add(reg2);
-		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformView(),
-				repository);
 		repository.getPreparationRegistries().add(reg3);
-		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformView(),
-				repository);
 		repository.getPreparationRegistries().add(reg4);
-		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformView(),
+		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformer(),
 				repository);
 	}
 
 	@Test
 	public void test() throws IOException {
-		LocalDate from = LocalDate.parse("2018-05-22");
-		LocalDate to = LocalDate.parse("2018-05-22");
+		LocalDate from = LocalDate.parse("2018-03-15");
+		LocalDate to = LocalDate.parse("2018-03-18");
 		String path = exporter.export(from, to);
 		File f = new File(path);
 		assertTrue(f.exists() && !f.isDirectory());
