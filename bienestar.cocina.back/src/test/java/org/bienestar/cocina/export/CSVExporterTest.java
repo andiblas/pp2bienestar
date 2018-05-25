@@ -41,6 +41,11 @@ public class CSVExporterTest {
 		Preparation lecheChocolatada = new Preparation();
 
 		List<Consumption> consumptions = new ArrayList<Consumption>();
+		List<Consumption> consumptions_Albondiga = new ArrayList<Consumption>();
+		List<Consumption> consumptions_lecheChoco = new ArrayList<Consumption>();
+	
+		
+		
 		Ingredient azucar = new Ingredient();
 		azucar.setName("Azucar");
 		Consumption azucarConsumption = new Consumption();
@@ -81,21 +86,24 @@ public class CSVExporterTest {
 		cacao.setName("Cacao");
 		Consumption cacaoConsumption = new Consumption();
 		cacaoConsumption.setIngredient(cacao);
-		cacaoConsumption.setQuantity(100d);
-
+		cacaoConsumption.setQuantity(100d);		
+		
+		
 		consumptions.add(azucarConsumption);
 		consumptions.add(saquitoConsumption);
 		consumptions.add(lecheEnPolvoConsumption);
 		consumptions.add(aguaConsumption);
 
-		consumptions.add(arrozConsumption);
-		consumptions.add(carnePicadaConsumption);
+		consumptions_Albondiga.add(arrozConsumption);
+		consumptions_Albondiga.add(carnePicadaConsumption);
 
-		consumptions.add(cacaoConsumption);
+		consumptions_lecheChoco.add(cacaoConsumption);
+		consumptions_lecheChoco.add(lecheEnPolvoConsumption);
+		consumptions_lecheChoco.add(aguaConsumption);
 
 		teConLeche.setConsumptions(consumptions);
-		albondigasArroz.setConsumptions(consumptions);
-		lecheChocolatada.setConsumptions(consumptions);
+		albondigasArroz.setConsumptions(consumptions_Albondiga);
+		lecheChocolatada.setConsumptions(consumptions_lecheChoco);
 
 		reg1.setPreparation(teConLeche);
 		reg2.setPreparation(teConLeche);
