@@ -7,6 +7,10 @@ public class RetryManager {
 
 	private RetryTable table;
 
+	public RetryTable getTable() {
+		return table;
+	}
+
 	public RetryManager() {
 		table = new RetryTable();
 	}
