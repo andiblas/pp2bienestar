@@ -1,16 +1,17 @@
 package org.bienestar.cocina.back.messenger;
 
-public class TextMessage implements Message {
+public class TextMessage implements Message<String> {
 
 	private String text;
-
-	public String getText() {
-		return text;
-	}
 
 	public TextMessage(String text) {
 		super();
 		this.text = text;
+	}
+
+	@Override
+	public String getMessage() {
+		return text;
 	}
 
 }

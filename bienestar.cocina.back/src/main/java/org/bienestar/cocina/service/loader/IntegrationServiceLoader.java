@@ -19,6 +19,7 @@ public class IntegrationServiceLoader {
                 fileNames.add(each.toUri().toURL());
             }
         } catch (IOException ex) {
+        	System.out.println(ex);
         }
         URL[] array = fileNames.stream().toArray(size -> new URL[size]);
         ClassLoader cl = new URLClassLoader(array, IntegrationServiceLoader.class.getClassLoader());

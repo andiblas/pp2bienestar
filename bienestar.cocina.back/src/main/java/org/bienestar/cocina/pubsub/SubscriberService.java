@@ -15,20 +15,28 @@ public class SubscriberService {
 	/**
 	 * Creates a new instance of SubscriberService
 	 */
-	private SubscriberService() {
-		consumptionLoader = IntegrationServiceLoader.loadIntegrations(Paths.get("C:\\Users\\Leandro\\Documents\\bienestarPP2\\bienestar.cocina.back.messenger\\target"), ConsumptionSubscriber.class);
+	private SubscriberService(String path) {
+		consumptionLoader = IntegrationServiceLoader.loadIntegrations(Paths.get(path), ConsumptionSubscriber.class);
 	}
 
 	/**
-	 * Retrieve the singleton static instance of SubscriberService.
+	 * Devuelve la instancia actual
 	 */
-	public static synchronized SubscriberService getInstance() {
+	public static synchronized SubscriberService getInstance(String path) {
 		if (service == null) {
-			service = new SubscriberService();
+			service = new SubscriberService(path);
 		}
 		return service;
 	}
 
+	/**
+	 * Devuelve una nueva instancia
+	 */
+	public static synchronized SubscriberService getNewInstance(String path) {
+		service = new SubscriberService(path);
+		return service;
+	}
+	
 	public void subscribe() {
 		try {
 			Iterator<ConsumptionSubscriber> suscriberIterator = consumptionLoader.iterator();

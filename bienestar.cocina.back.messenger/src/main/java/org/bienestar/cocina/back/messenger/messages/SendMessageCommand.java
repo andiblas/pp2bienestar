@@ -2,7 +2,7 @@ package org.bienestar.cocina.back.messenger.messages;
 
 import org.bienestar.cocina.back.messenger.Message;
 import org.bienestar.cocina.back.messenger.breaker.CircuitBreakerCommand;
-import org.bienestar.cocina.back.messenger.breaker.Sender;
+import org.bienestar.cocina.back.senders.Sender;
 
 public class SendMessageCommand implements CircuitBreakerCommand {
 

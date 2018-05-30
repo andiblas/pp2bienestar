@@ -9,7 +9,7 @@ public class ConsumptionSuscriberTest {
 
 	@Test
 	public void subscribe(){
-		SubscriberService plugin = SubscriberService.getInstance();
+		SubscriberService plugin = SubscriberService.getInstance("src/test/resources/plugins/messenger");
 		plugin.subscribe();
 		PublishSubscribe.getInstance().publish(SubscriptionTypes.CONSUMPTION.getType(), "Ale gato");
 	}
