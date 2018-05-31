@@ -2,6 +2,7 @@ package org.bienestar.cocina.plugin;
 
 import java.io.IOException;
 import java.nio.file.NoSuchFileException;
+import java.util.ServiceConfigurationError;
 
 import org.bienestar.cocina.pubsub.ConsumptionSubscriber;
 import org.bienestar.cocina.pubsub.SubscriberService;
@@ -23,10 +24,10 @@ public class ConsumptionSuscriberTest {
 		Assert.assertFalse(service.getLoader().iterator().hasNext());
 	}
 	
-	@Test
+	@Test(expected = ServiceConfigurationError.class)
 	public void invalidPlugin() throws IOException{
 		SubscriberService service = SubscriberService.getNewInstance("src/test/resources/plugins/invalid");
-		Assert.assertFalse(service.getLoader().iterator().hasNext());
+		service.getLoader().iterator().next();
 	}
 	
 	@Test(expected = NoSuchFileException.class)
