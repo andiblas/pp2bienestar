@@ -12,14 +12,12 @@ import java.util.ServiceLoader;
 
 public class IntegrationServiceLoader {
 
-	public static <T> ServiceLoader<T> loadIntegrations(Path path, Class<T> clazz) {
+	public static <T> ServiceLoader<T> loadIntegrations(Path path, Class<T> clazz) throws IOException {
         List<URL> fileNames = new ArrayList<>();
         try (DirectoryStream<Path> directoryStream = Files.newDirectoryStream(path)) {
             for (Path each : directoryStream) {
                 fileNames.add(each.toUri().toURL());
             }
-        } catch (IOException ex) {
-        	System.out.println(ex);
         }
         URL[] array = fileNames.stream().toArray(size -> new URL[size]);
         ClassLoader cl = new URLClassLoader(array, IntegrationServiceLoader.class.getClassLoader());

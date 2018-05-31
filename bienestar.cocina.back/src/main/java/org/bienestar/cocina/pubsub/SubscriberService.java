@@ -1,5 +1,6 @@
 package org.bienestar.cocina.pubsub;
 
+import java.io.IOException;
 import java.nio.file.Paths;
 import java.util.Iterator;
 import java.util.ServiceConfigurationError;
@@ -14,15 +15,17 @@ public class SubscriberService {
 
 	/**
 	 * Creates a new instance of SubscriberService
+	 * @throws IOException 
 	 */
-	private SubscriberService(String path) {
+	private SubscriberService(String path) throws IOException {
 		consumptionLoader = IntegrationServiceLoader.loadIntegrations(Paths.get(path), ConsumptionSubscriber.class);
 	}
 
 	/**
 	 * Devuelve la instancia actual
+	 * @throws IOException 
 	 */
-	public static synchronized SubscriberService getInstance(String path) {
+	public static synchronized SubscriberService getInstance(String path) throws IOException {
 		if (service == null) {
 			service = new SubscriberService(path);
 		}
@@ -31,10 +34,15 @@ public class SubscriberService {
 
 	/**
 	 * Devuelve una nueva instancia
+	 * @throws IOException 
 	 */
-	public static synchronized SubscriberService getNewInstance(String path) {
+	public static synchronized SubscriberService getNewInstance(String path) throws IOException {
 		service = new SubscriberService(path);
 		return service;
+	}
+	
+	public ServiceLoader<ConsumptionSubscriber> getLoader(){
+		return consumptionLoader;
 	}
 	
 	public void subscribe() {

@@ -1,16 +1,36 @@
 package org.bienestar.cocina.plugin;
 
-import org.bienestar.cocina.pubsub.PublishSubscribe;
+import java.io.IOException;
+import java.nio.file.NoSuchFileException;
+
+import org.bienestar.cocina.pubsub.ConsumptionSubscriber;
 import org.bienestar.cocina.pubsub.SubscriberService;
-import org.bienestar.cocina.pubsub.SubscriptionTypes;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class ConsumptionSuscriberTest {
 
 	@Test
-	public void subscribe(){
-		SubscriberService plugin = SubscriberService.getInstance("src/test/resources/plugins/messenger");
-		plugin.subscribe();
-		PublishSubscribe.getInstance().publish(SubscriptionTypes.CONSUMPTION.getType(), "Ale gato");
+	public void getPluginMessengerSubscriber() throws IOException{
+		SubscriberService service = SubscriberService.getNewInstance("src/test/resources/plugins/messenger");
+		ConsumptionSubscriber impl = service.getLoader().iterator().next();
+		Assert.assertNotNull(impl);
+	}
+	
+	@Test
+	public void emptyPlugin() throws IOException{
+		SubscriberService service = SubscriberService.getNewInstance("src/test/resources/plugins/empty");
+		Assert.assertFalse(service.getLoader().iterator().hasNext());
+	}
+	
+	@Test
+	public void invalidPlugin() throws IOException{
+		SubscriberService service = SubscriberService.getNewInstance("src/test/resources/plugins/invalid");
+		Assert.assertFalse(service.getLoader().iterator().hasNext());
+	}
+	
+	@Test(expected = NoSuchFileException.class)
+	public void notExist() throws IOException{
+		SubscriberService.getNewInstance("src/test/resources/plugins/notexist");
 	}
 }
