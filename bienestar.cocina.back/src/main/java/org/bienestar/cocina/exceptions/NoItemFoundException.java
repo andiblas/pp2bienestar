@@ -8,7 +8,7 @@ public class NoItemFoundException extends AbstractException {
 	private static final long serialVersionUID = 1L;
 
 	public NoItemFoundException() {
-		super("ex.diainvalido");
+		super("ex.noitemfound");
 	}
 
 }

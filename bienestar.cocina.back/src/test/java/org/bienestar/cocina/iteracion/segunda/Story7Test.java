@@ -1,6 +1,7 @@
 package org.bienestar.cocina.iteracion.segunda;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import org.bienestar.cocina.consumption.ConsumptionBuilder;
 import org.bienestar.cocina.domain.Ingredient;
@@ -13,22 +14,42 @@ import org.bienestar.cocina.export.FileSaver;
 import org.bienestar.cocina.export.FilenameAssigner;
 import org.bienestar.cocina.export.PreparationRegistryTransformer;
 import org.bienestar.cocina.preparation.PreparationBuilder;
+import org.bienestar.cocina.preparation.PreparationFilter;
 import org.bienestar.cocina.preparationRegistry.PreparationRegistryRepository;
 import org.junit.Before;
+import org.junit.Test;
 
 public class Story7Test {
 
 	private CSVExporter exporter;
+	private PreparationRegistryRepository repository;
+	private PreparationFilter filter;
+	
+	@Test
+	public void invalidRange(){
+		
+	}
+	
+	@Test
+	public void zeroItem(){
+		
+	}
+	
+	@Test
+	public void twoItem(){
+		
+	}
 	
 	@Before
 	public void setContexto() throws InvalidIngredientQuantityException{
-		PreparationRegistryRepository repository = new PreparationRegistryRepository();
+		repository = new PreparationRegistryRepository();
+		filter = new PreparationFilter();
 		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-15",this.createTeConLechePreparation()));
 		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-16",this.createTeConLechePreparation()));
 		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-16",this.createAlbondigasArrozPreparation()));
 		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-18",this.createLecheChocolatadaPreparation()));
-		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformer(),
-				repository);
+		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(), LocalDate.parse("2017-03-15"));
+		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformer());
 	}
 	
 	private Preparation createTeConLechePreparation() throws InvalidIngredientQuantityException{

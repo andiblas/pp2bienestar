@@ -21,6 +21,7 @@ import org.bienestar.cocina.export.FileSaver;
 import org.bienestar.cocina.export.FilenameAssigner;
 import org.bienestar.cocina.export.PreparationRegistryTransformer;
 import org.bienestar.cocina.preparation.PreparationBuilder;
+import org.bienestar.cocina.preparation.PreparationFilter;
 import org.bienestar.cocina.preparationRegistry.PreparationRegistryRepository;
 import org.junit.Assert;
 import org.junit.Before;
@@ -29,6 +30,8 @@ import org.junit.Test;
 public class Story6Test {
 
 	private CSVExporter exporter;
+	private PreparationRegistryRepository repository;
+	private PreparationFilter filter;
 	
 	@Test
 	public void nameAssigner(){
@@ -39,7 +42,7 @@ public class Story6Test {
 	
 	@Test
 	public void oneItem(){
-		List<PreparationRegistry> registries = exporter.getPreparationFilter(LocalDate.parse("2018-03-15"));
+		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),LocalDate.parse("2018-03-15"));
 		Assert.assertEquals(1, registries.size());
 	}
 	
@@ -52,20 +55,22 @@ public class Story6Test {
 	
 	@Test
 	public void zeroItem(){
-		List<PreparationRegistry> registries = exporter.getPreparationFilter(LocalDate.parse("2017-03-15"));
+		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),LocalDate.parse("2017-03-15"));
 		Assert.assertTrue(registries.isEmpty());
 	}
 	
 	@Test
 	public void fileGeneration() throws IOException, NoItemFoundException{
-		String path = exporter.export(LocalDate.parse("2018-03-16"));
+		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(), LocalDate.parse("2018-03-16"));
+		String path = exporter.export(data,LocalDate.parse("2018-03-16"));
 		File f = new File(path);
 		assertTrue(f.exists() && !f.isDirectory());
 	}
 	
 	@Test(expected = NoItemFoundException.class)
 	public void noItemFoundException() throws IOException, NoItemFoundException{
-		exporter.export(LocalDate.parse("2017-03-15"));
+		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(), LocalDate.parse("2017-03-15"));
+		exporter.export(data, LocalDate.parse("2017-03-15"));
 	}
 	
 	private Preparation createSimplePreparation() throws InvalidIngredientQuantityException{
@@ -84,12 +89,12 @@ public class Story6Test {
 	
 	@Before
 	public void setContexto() throws InvalidIngredientQuantityException{
-		PreparationRegistryRepository repository = new PreparationRegistryRepository();
+		repository = new PreparationRegistryRepository();
+		filter = new PreparationFilter();
 		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-15"));
 		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-16"));
 		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-16"));
 		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-18"));
-		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformer(),
-				repository);
+		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformer());
 	}
 }

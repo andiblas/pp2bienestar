@@ -2,19 +2,23 @@ package org.bienestar.cocina.export;
 
 import java.io.IOException;
 import java.time.LocalDate;
+import java.util.List;
 
+import org.bienestar.cocina.domain.PreparationRegistry;
 import org.bienestar.cocina.exceptions.NoItemFoundException;
-import org.bienestar.cocina.preparationRegistry.PreparationRegistryRepository;
+import org.bienestar.cocina.preparation.PreparationFilter;
 import org.bienestar.cocina.repository.RepositoryStore;
 
 public class CSVExporterFacade {
 
 	public void export(LocalDate from, LocalDate to) throws IOException, NoItemFoundException {
+		PreparationFilter filter = new PreparationFilter();
+		List<PreparationRegistry> data = filter.getPreparationFilter(
+				RepositoryStore.getInstance().getPreparationRegistryRepository().getPreparationRegistries(), from, to);
 		CSVExporter exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(),
-				new PreparationRegistryTransformer(),
-				RepositoryStore.getInstance().getPreparationRegistryRepository());
+				new PreparationRegistryTransformer());
 
-		exporter.export(from, to);
+		exporter.export(data, from, to);
 	}
 
 }
