@@ -61,7 +61,7 @@ public class ConsumptionVerifierStandardDevTest {
 	
 	@Test(expected = ConsumptionOutOfRangeException.class)
 	public void ca1() throws ConsumptionOutOfRangeException {
-		doConsumption("leche en polvo", 241, 20);
+		doConsumption("leche en polvo", 572, 20);
 	}
 	
 	@Test(expected = ConsumptionOutOfRangeException.class)
@@ -76,7 +76,7 @@ public class ConsumptionVerifierStandardDevTest {
 	
 	@Test(expected = ConsumptionOutOfRangeException.class)
 	public void ca4() throws ConsumptionOutOfRangeException {
-		doConsumption("cacao en polvo", 200, 20);
+		doConsumption("cacao en polvo", 100, 20);
 	}
 	
 	@Test(expected = ConsumptionOutOfRangeException.class)
@@ -86,7 +86,7 @@ public class ConsumptionVerifierStandardDevTest {
 	
 	@Test()
 	public void ca6() throws ConsumptionOutOfRangeException {
-		doConsumption("cacao en polvo", 100, 20);
+		doConsumption("cacao en polvo", 200, 20);
 	}
 	
 
