@@ -14,6 +14,7 @@ import org.bienestar.cocina.domain.MeasureType;
 import org.bienestar.cocina.domain.Preparation;
 import org.bienestar.cocina.domain.PreparationRegistry;
 import org.bienestar.cocina.exceptions.InvalidIngredientQuantityException;
+import org.bienestar.cocina.exceptions.InvalidRange;
 import org.bienestar.cocina.exceptions.NoItemFoundException;
 import org.bienestar.cocina.export.CSVExporter;
 import org.bienestar.cocina.export.CSVTransformer;
@@ -41,7 +42,7 @@ public class Story6Test {
 	}
 	
 	@Test
-	public void oneItem(){
+	public void oneItem() throws InvalidRange{
 		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),LocalDate.parse("2018-03-15"));
 		Assert.assertEquals(1, registries.size());
 	}
@@ -54,13 +55,13 @@ public class Story6Test {
 	}
 	
 	@Test
-	public void zeroItem(){
+	public void zeroItem() throws InvalidRange{
 		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),LocalDate.parse("2017-03-15"));
 		Assert.assertTrue(registries.isEmpty());
 	}
 	
 	@Test
-	public void fileGeneration() throws IOException, NoItemFoundException{
+	public void fileGeneration() throws IOException, NoItemFoundException, InvalidRange{
 		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(), LocalDate.parse("2018-03-16"));
 		String path = exporter.export(data,LocalDate.parse("2018-03-16"));
 		File f = new File(path);
@@ -68,7 +69,7 @@ public class Story6Test {
 	}
 	
 	@Test(expected = NoItemFoundException.class)
-	public void noItemFoundException() throws IOException, NoItemFoundException{
+	public void noItemFoundException() throws IOException, NoItemFoundException, InvalidRange{
 		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(), LocalDate.parse("2017-03-15"));
 		exporter.export(data, LocalDate.parse("2017-03-15"));
 	}
