@@ -43,48 +43,48 @@ public class Story6Test {
 	
 	@Test
 	public void oneItem() throws InvalidRange{
-		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),LocalDate.parse("2018-03-15"));
+		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),LocalDate.parse("15/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		Assert.assertEquals(1, registries.size());
 	}
 	
 	@Test
 	public void transformItem() throws InvalidIngredientQuantityException{
 		CSVTransformer<PreparationRegistry> transformer = new PreparationRegistryTransformer();
-		String text = transformer.transform(this.getPreparationRegistry("2018-03-15"));
+		String text = transformer.transform(this.getMockPreparationRegistry("15/03/2018"));
 		Assert.assertEquals("2018-03-15,20,,Azucar,300.0", text);
 	}
 	
 	@Test
 	public void zeroItem() throws InvalidRange{
-		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),LocalDate.parse("2017-03-15"));
+		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),LocalDate.parse("15/03/2017",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		Assert.assertTrue(registries.isEmpty());
 	}
 	
 	@Test
 	public void fileGeneration() throws IOException, NoItemFoundException, InvalidRange{
-		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(), LocalDate.parse("2018-03-16"));
-		String path = exporter.export(data,LocalDate.parse("2018-03-16"));
+		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(), LocalDate.parse("16/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		String path = exporter.export(data,LocalDate.parse("16/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		File f = new File(path);
 		assertTrue(f.exists() && !f.isDirectory());
 	}
 	
 	@Test(expected = NoItemFoundException.class)
 	public void noItemFoundException() throws IOException, NoItemFoundException, InvalidRange{
-		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(), LocalDate.parse("2017-03-15"));
-		exporter.export(data, LocalDate.parse("2017-03-15"));
+		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(), LocalDate.parse("15/03/2017",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		exporter.export(data, LocalDate.parse("15/03/2017",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 	}
 	
-	private Preparation createSimplePreparation() throws InvalidIngredientQuantityException{
+	private Preparation createAzucarPreparation() throws InvalidIngredientQuantityException{
 		PreparationBuilder builder = new PreparationBuilder();
 		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Azucar",MeasureType.GRAM), 300d));
 		return builder.build();
 	}
 	
-	private PreparationRegistry getPreparationRegistry(String date) throws InvalidIngredientQuantityException{
+	private PreparationRegistry getMockPreparationRegistry(String date) throws InvalidIngredientQuantityException{
 		PreparationRegistry reg1 = new PreparationRegistry();
-		reg1.setDate(LocalDate.parse(date));
+		reg1.setDate(LocalDate.parse(date,DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		reg1.setDiners(20);
-		reg1.setPreparation(this.createSimplePreparation());
+		reg1.setPreparation(this.createAzucarPreparation());
 		return reg1;
 	}
 	
@@ -92,10 +92,10 @@ public class Story6Test {
 	public void setContexto() throws InvalidIngredientQuantityException{
 		repository = new PreparationRegistryRepository();
 		filter = new PreparationFilter();
-		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-15"));
-		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-16"));
-		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-16"));
-		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-18"));
+		repository.getPreparationRegistries().add(this.getMockPreparationRegistry("15/03/2018"));
+		repository.getPreparationRegistries().add(this.getMockPreparationRegistry("16/03/2018"));
+		repository.getPreparationRegistries().add(this.getMockPreparationRegistry("16/03/2018"));
+		repository.getPreparationRegistries().add(this.getMockPreparationRegistry("18/03/2018"));
 		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformer());
 	}
 }

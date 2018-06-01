@@ -5,6 +5,7 @@ import static org.junit.Assert.assertTrue;
 import java.io.File;
 import java.io.IOException;
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.bienestar.cocina.consumption.ConsumptionBuilder;
@@ -31,76 +32,87 @@ public class Story7Test {
 	private CSVExporter exporter;
 	private PreparationRegistryRepository repository;
 	private PreparationFilter filter;
-	
+
 	@Test(expected = InvalidRange.class)
-	public void invalidRange() throws InvalidRange{
-		filter.getPreparationFilter(repository.getPreparationRegistries(),LocalDate.parse("2017-03-15"),LocalDate.parse("2017-03-13"));
+	public void invalidRange() throws InvalidRange {
+		filter.getPreparationFilter(repository.getPreparationRegistries(),
+				LocalDate.parse("15/03/2017", DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+				LocalDate.parse("13/03/2017", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 	}
-	
+
 	@Test
-	public void zeroItem() throws InvalidRange{
-		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),LocalDate.parse("2017-03-15"),LocalDate.parse("2017-03-17"));
+	public void zeroItem() throws InvalidRange {
+		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),
+				LocalDate.parse("15/03/2017",DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.parse("17/03/2017",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		Assert.assertTrue(registries.isEmpty());
 	}
-	
+
 	@Test
-	public void threeItems() throws InvalidRange{
-		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),LocalDate.parse("2018-03-16"),LocalDate.parse("2018-03-18"));
+	public void threeItems() throws InvalidRange {
+		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),
+				LocalDate.parse("16/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.parse("18/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		Assert.assertEquals(3, registries.size());
 	}
-	
+
 	@Test
-	public void fileGeneration() throws IOException, NoItemFoundException, InvalidRange{
-		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(), LocalDate.parse("2018-03-16"),LocalDate.parse("2018-03-17"));
-		String path = exporter.export(data,LocalDate.parse("2018-03-16"),LocalDate.parse("2018-03-17"));
+	public void fileGeneration() throws IOException, NoItemFoundException, InvalidRange {
+		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(),
+				LocalDate.parse("16/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.parse("17/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		String path = exporter.export(data, LocalDate.parse("16/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.parse("17/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		File f = new File(path);
 		assertTrue(f.exists() && !f.isDirectory());
 	}
-	
+
 	@Test(expected = NoItemFoundException.class)
-	public void noItemFoundException() throws IOException, NoItemFoundException, InvalidRange{
-		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(), LocalDate.parse("2017-03-15"));
-		exporter.export(data, LocalDate.parse("2017-03-15"),LocalDate.parse("2017-03-16"));
+	public void noItemFoundException() throws IOException, NoItemFoundException, InvalidRange {
+		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(),
+				LocalDate.parse("15/03/2017",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		exporter.export(data, LocalDate.parse("15/03/2017",DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.parse("16/03/2017",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 	}
-	
+
 	@Before
-	public void setContexto() throws InvalidIngredientQuantityException{
+	public void setContexto() throws InvalidIngredientQuantityException {
 		repository = new PreparationRegistryRepository();
 		filter = new PreparationFilter();
-		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-15",this.createTeConLechePreparation()));
-		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-16",this.createTeConLechePreparation()));
-		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-16",this.createAlbondigasArrozPreparation()));
-		repository.getPreparationRegistries().add(this.getPreparationRegistry("2018-03-18",this.createLecheChocolatadaPreparation()));
+		repository.getPreparationRegistries()
+				.add(this.getPreparationRegistry("15/03/2018", this.createTeConLechePreparation()));
+		repository.getPreparationRegistries()
+				.add(this.getPreparationRegistry("16/03/2018", this.createTeConLechePreparation()));
+		repository.getPreparationRegistries()
+				.add(this.getPreparationRegistry("16/03/2018", this.createAlbondigasArrozPreparation()));
+		repository.getPreparationRegistries()
+				.add(this.getPreparationRegistry("18/03/2018", this.createLecheChocolatadaPreparation()));
 		exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(), new PreparationRegistryTransformer());
 	}
-	
-	private Preparation createTeConLechePreparation() throws InvalidIngredientQuantityException{
+
+	private Preparation createTeConLechePreparation() throws InvalidIngredientQuantityException {
 		PreparationBuilder builder = new PreparationBuilder();
-		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Azucar",MeasureType.GRAM), 300d));
-		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Saquito de Te",MeasureType.UNIT), 20d));
-		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Leche en Polvo",MeasureType.GRAM), 100d));
-		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Agua",MeasureType.LITERS), 10d));
+		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Azucar", MeasureType.GRAM), 300d));
+		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Saquito de Te", MeasureType.UNIT), 20d));
+		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Leche en Polvo", MeasureType.GRAM), 100d));
+		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Agua", MeasureType.LITERS), 10d));
 		return builder.build();
 	}
-	
-	private Preparation createAlbondigasArrozPreparation() throws InvalidIngredientQuantityException{
+
+	private Preparation createAlbondigasArrozPreparation() throws InvalidIngredientQuantityException {
 		PreparationBuilder builder = new PreparationBuilder();
-		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Arroz",MeasureType.GRAM), 1d));
-		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Carne Picada",MeasureType.KILOGRAM), 300d));
+		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Arroz", MeasureType.GRAM), 1d));
+		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Carne Picada", MeasureType.KILOGRAM), 300d));
 		return builder.build();
 	}
-	
-	private Preparation createLecheChocolatadaPreparation() throws InvalidIngredientQuantityException{
+
+	private Preparation createLecheChocolatadaPreparation() throws InvalidIngredientQuantityException {
 		PreparationBuilder builder = new PreparationBuilder();
-		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Cacao",MeasureType.GRAM), 100d));
-		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Leche en Polvo",MeasureType.GRAM), 100d));
-		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Agua",MeasureType.LITERS), 10d));
+		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Cacao", MeasureType.GRAM), 100d));
+		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Leche en Polvo", MeasureType.GRAM), 100d));
+		builder.addConsumption(ConsumptionBuilder.build(new Ingredient("Agua", MeasureType.LITERS), 10d));
 		return builder.build();
 	}
-	
-	private PreparationRegistry getPreparationRegistry(String date, Preparation preparation) throws InvalidIngredientQuantityException{
+
+	private PreparationRegistry getPreparationRegistry(String date, Preparation preparation)
+			throws InvalidIngredientQuantityException {
 		PreparationRegistry reg1 = new PreparationRegistry();
-		reg1.setDate(LocalDate.parse(date));
+		reg1.setDate(LocalDate.parse(date,DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		reg1.setDiners(20);
 		reg1.setPreparation(preparation);
 		return reg1;
