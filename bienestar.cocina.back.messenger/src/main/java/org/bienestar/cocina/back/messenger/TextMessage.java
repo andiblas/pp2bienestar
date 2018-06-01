@@ -13,5 +13,10 @@ public class TextMessage implements Message<String> {
 	public String getMessage() {
 		return text;
 	}
+	
+	@Override
+	public String toString() {
+		return getMessage();
+	}
 
 }

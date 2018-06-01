@@ -10,7 +10,7 @@ public class MessageDispatcher<T extends Sender<Message<?>>> {
 	private CircuitBreaker cb;
 	private T sender;
 
-	public MessageDispatcher( CircuitBreaker cb, T sender) {
+	public MessageDispatcher(CircuitBreaker cb, T sender) {
 		this.cb = cb;
 		this.sender = sender;
 	}

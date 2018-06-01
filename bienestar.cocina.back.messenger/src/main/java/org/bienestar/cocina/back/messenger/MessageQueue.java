@@ -17,8 +17,8 @@ public class MessageQueue extends ConcurrentLinkedQueue<Message> {
 		return instance;
 	}
 
-	private MessageQueue() {
-
-	}
+//	private MessageQueue() {
+//
+//	}
 
 }

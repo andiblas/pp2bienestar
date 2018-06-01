@@ -19,9 +19,10 @@ public class MessageQueueChecker {
 		th = setUpWorker();
 	}
 
-	public void start() {
+	public void start() throws InterruptedException {
 		running = true;
 		th.start();
+		Thread.sleep(1000);
 	}
 
 	private Thread setUpWorker() {
