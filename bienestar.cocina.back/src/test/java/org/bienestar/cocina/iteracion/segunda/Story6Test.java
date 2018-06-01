@@ -89,7 +89,7 @@ public class Story6Test {
 	}
 	
 	@Before
-	public void setContexto() throws InvalidIngredientQuantityException{
+	public void setContext() throws InvalidIngredientQuantityException{
 		repository = new PreparationRegistryRepository();
 		filter = new PreparationFilter();
 		repository.getPreparationRegistries().add(this.getMockPreparationRegistry("15/03/2018"));
