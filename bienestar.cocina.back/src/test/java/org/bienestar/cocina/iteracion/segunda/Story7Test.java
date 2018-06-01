@@ -33,6 +33,14 @@ public class Story7Test {
 	private PreparationRegistryRepository repository;
 	private PreparationFilter filter;
 
+	@Test
+	public void nameAssigner() {
+		FilenameAssigner assigner = new FilenameAssigner();
+		String name = assigner.getName(LocalDate.parse("16/03/2018", DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+				LocalDate.parse("18/03/2018", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		Assert.assertEquals("2018-03-16_2018-03-18.csv", name);
+	}
+
 	@Test(expected = InvalidRange.class)
 	public void invalidRange() throws InvalidRange {
 		filter.getPreparationFilter(repository.getPreparationRegistries(),
@@ -43,22 +51,26 @@ public class Story7Test {
 	@Test
 	public void zeroItem() throws InvalidRange {
 		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),
-				LocalDate.parse("15/03/2017",DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.parse("17/03/2017",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+				LocalDate.parse("15/03/2017", DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+				LocalDate.parse("17/03/2017", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		Assert.assertTrue(registries.isEmpty());
 	}
 
 	@Test
 	public void threeItems() throws InvalidRange {
 		List<PreparationRegistry> registries = filter.getPreparationFilter(repository.getPreparationRegistries(),
-				LocalDate.parse("16/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.parse("18/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+				LocalDate.parse("16/03/2018", DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+				LocalDate.parse("18/03/2018", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		Assert.assertEquals(3, registries.size());
 	}
 
 	@Test
 	public void fileGeneration() throws IOException, NoItemFoundException, InvalidRange {
 		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(),
-				LocalDate.parse("16/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.parse("17/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		String path = exporter.export(data, LocalDate.parse("16/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.parse("17/03/2018",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+				LocalDate.parse("16/03/2018", DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+				LocalDate.parse("17/03/2018", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		String path = exporter.export(data, LocalDate.parse("16/03/2018", DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+				LocalDate.parse("17/03/2018", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		File f = new File(path);
 		assertTrue(f.exists() && !f.isDirectory());
 	}
@@ -66,8 +78,9 @@ public class Story7Test {
 	@Test(expected = NoItemFoundException.class)
 	public void noItemFoundException() throws IOException, NoItemFoundException, InvalidRange {
 		List<PreparationRegistry> data = filter.getPreparationFilter(repository.getPreparationRegistries(),
-				LocalDate.parse("15/03/2017",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
-		exporter.export(data, LocalDate.parse("15/03/2017",DateTimeFormatter.ofPattern("dd/MM/yyyy")), LocalDate.parse("16/03/2017",DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+				LocalDate.parse("15/03/2017", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		exporter.export(data, LocalDate.parse("15/03/2017", DateTimeFormatter.ofPattern("dd/MM/yyyy")),
+				LocalDate.parse("16/03/2017", DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 	}
 
 	@Before
@@ -112,7 +125,7 @@ public class Story7Test {
 	private PreparationRegistry getPreparationRegistry(String date, Preparation preparation)
 			throws InvalidIngredientQuantityException {
 		PreparationRegistry reg1 = new PreparationRegistry();
-		reg1.setDate(LocalDate.parse(date,DateTimeFormatter.ofPattern("dd/MM/yyyy")));
+		reg1.setDate(LocalDate.parse(date, DateTimeFormatter.ofPattern("dd/MM/yyyy")));
 		reg1.setDiners(20);
 		reg1.setPreparation(preparation);
 		return reg1;

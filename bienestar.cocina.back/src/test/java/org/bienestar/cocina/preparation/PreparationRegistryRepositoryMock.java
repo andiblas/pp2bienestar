@@ -1,4 +1,4 @@
-package org.bienestar.cocina.preparationRegistry;
+package org.bienestar.cocina.preparation;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -8,6 +8,7 @@ import org.bienestar.cocina.domain.Consumption;
 import org.bienestar.cocina.domain.Ingredient;
 import org.bienestar.cocina.domain.Preparation;
 import org.bienestar.cocina.domain.PreparationRegistry;
+import org.bienestar.cocina.preparationRegistry.PreparationRegistryRepository;
 
 public class PreparationRegistryRepositoryMock extends PreparationRegistryRepository {
 
