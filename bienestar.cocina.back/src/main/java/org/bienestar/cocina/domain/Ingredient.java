@@ -6,6 +6,14 @@ public class Ingredient {
 	private String description;
 	private MeasureType measureType;
 
+	public Ingredient() {
+	}
+	
+	public Ingredient(String name,MeasureType measureType) {
+		this.name = name;
+		this.measureType = measureType;
+	}
+
 	public String getName() {
 		return name;
 	}

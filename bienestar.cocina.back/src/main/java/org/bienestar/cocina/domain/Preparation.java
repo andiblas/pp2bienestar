@@ -1,5 +1,6 @@
 package org.bienestar.cocina.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Preparation {
@@ -8,6 +9,10 @@ public class Preparation {
 	private List<Consumption> consumptions;
 	private PreparationType type; 
 
+	public Preparation() {
+		consumptions = new ArrayList<>();
+	}
+	
 	public String getPreparation() {
 		return name;
 	}
@@ -39,4 +44,9 @@ public class Preparation {
 	public void setType(PreparationType type) {
 		this.type = type;
 	}
+	
+	public void addConsumption(Consumption consumption){
+		this.consumptions.add(consumption);
+	}
+	
 }

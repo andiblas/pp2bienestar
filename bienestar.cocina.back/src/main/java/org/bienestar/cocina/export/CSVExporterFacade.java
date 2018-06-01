@@ -3,12 +3,13 @@ package org.bienestar.cocina.export;
 import java.io.IOException;
 import java.time.LocalDate;
 
+import org.bienestar.cocina.exceptions.NoItemFoundException;
 import org.bienestar.cocina.preparationRegistry.PreparationRegistryRepository;
 import org.bienestar.cocina.repository.RepositoryStore;
 
 public class CSVExporterFacade {
 
-	public void export(LocalDate from, LocalDate to) throws IOException {
+	public void export(LocalDate from, LocalDate to) throws IOException, NoItemFoundException {
 		CSVExporter exporter = new CSVExporter(new FilenameAssigner(), new FileSaver(),
 				new PreparationRegistryTransformer(),
 				RepositoryStore.getInstance().getPreparationRegistryRepository());
