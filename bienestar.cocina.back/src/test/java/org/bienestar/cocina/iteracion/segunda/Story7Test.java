@@ -32,7 +32,7 @@ public class Story7Test {
 	private PreparationRegistryRepository repository;
 	private PreparationFilter filter;
 	
-	@Test(expected = Exception.class)
+	@Test(expected = InvalidRange.class)
 	public void invalidRange() throws InvalidRange{
 		filter.getPreparationFilter(repository.getPreparationRegistries(),LocalDate.parse("2017-03-15"),LocalDate.parse("2017-03-13"));
 	}
