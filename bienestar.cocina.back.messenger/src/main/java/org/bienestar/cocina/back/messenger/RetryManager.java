@@ -15,8 +15,8 @@ public class RetryManager {
 		table = new RetryTable();
 	}
 
-	public void onError(Message m) {
-		List<FailedMessageEntry> result = table.stream().filter(x -> x.getMessage() == m).collect(Collectors.toList());
+	public void onError(Message<?> m) {
+		List<FailedMessageEntry> result = findMessage(m);
 		if (result.isEmpty()) {
 			FailedMessageEntry newEntry = new FailedMessageEntry();
 			newEntry.setQuantity(1);
@@ -26,5 +26,16 @@ public class RetryManager {
 			FailedMessageEntry found = result.get(0);
 			found.setQuantity(found.getQuantity() + 1);
 		}
+	}
+
+	public void onSuccess(Message<?> m) {
+		List<FailedMessageEntry> success = findMessage(m);
+		if (success.isEmpty()) return;
+		table.remove(success.get(0));
+	}
+	
+	private List<FailedMessageEntry> findMessage(Message<?> m) {
+		List<FailedMessageEntry> result = table.stream().filter(x -> x.getMessage() == m).collect(Collectors.toList());
+		return result;
 	}
 }
