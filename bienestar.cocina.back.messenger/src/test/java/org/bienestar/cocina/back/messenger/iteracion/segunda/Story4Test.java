@@ -32,28 +32,28 @@ public class Story4Test {
 	@Test(expected = SendingException.class)
 	public void genericError() throws Exception{
 		Sender<Message<List<NameValuePair>>> sender = new HttpSender("generic");
-		MessageDispatcher<?> dispatcher = new MessageDispatcher(message, cb, sender);
-		dispatcher.dispatch();
+		MessageDispatcher<?> dispatcher = new MessageDispatcher(cb, sender);
+		dispatcher.dispatch(message);
 	}
 	
 	@Test(expected = TimeOutException.class)
 	public void timeoutError() throws Exception{
 		Sender<Message<List<NameValuePair>>> sender = new HttpSender("timeout");
-		MessageDispatcher<?> dispatcher = new MessageDispatcher(message, cb, sender);
-		dispatcher.dispatch();
+		MessageDispatcher<?> dispatcher = new MessageDispatcher(cb, sender);
+		dispatcher.dispatch(message);
 	}
 	
 	@Test(expected = InvalidMessageException.class)
 	public void invalidMessageError() throws Exception{
 		Sender<Message<List<NameValuePair>>> sender = new HttpSender("invalid");
-		MessageDispatcher<?> dispatcher = new MessageDispatcher(message, cb, sender);
-		dispatcher.dispatch();
+		MessageDispatcher<?> dispatcher = new MessageDispatcher(cb, sender);
+		dispatcher.dispatch(message);
 	}
 	
 	@Test
 	public void sendingOk() throws Exception{
 		Sender<Message<List<NameValuePair>>> sender = new HttpSender("ok");
-		MessageDispatcher<?> dispatcher = new MessageDispatcher(message, cb, sender);
-		dispatcher.dispatch();
+		MessageDispatcher<?> dispatcher = new MessageDispatcher(cb, sender);
+		dispatcher.dispatch(message);
 	}
 }

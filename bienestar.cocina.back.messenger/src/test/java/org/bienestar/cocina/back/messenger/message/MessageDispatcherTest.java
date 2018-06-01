@@ -17,8 +17,8 @@ public class MessageDispatcherTest {
 			public void send(Message message) throws SendingException {
 			}
 		};
-		MessageDispatcher dispatcher = new MessageDispatcher(new TextMessage("message"), cb, sender);
-		dispatcher.dispatch();
+		MessageDispatcher dispatcher = new MessageDispatcher(cb, sender);
+		dispatcher.dispatch(new TextMessage("message"));
 	}
 	
 }
