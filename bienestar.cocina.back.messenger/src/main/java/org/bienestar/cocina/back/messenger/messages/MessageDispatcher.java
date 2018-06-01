@@ -10,13 +10,12 @@ public class MessageDispatcher<T extends Sender<Message<?>>> {
 	private CircuitBreaker cb;
 	private T sender;
 
-	public MessageDispatcher(Message<?> message, CircuitBreaker cb, T sender) {
-		this.message = message;
+	public MessageDispatcher( CircuitBreaker cb, T sender) {
 		this.cb = cb;
 		this.sender = sender;
 	}
 
-	public void dispatch() throws Exception {
+	public void dispatch(Message<?> message) throws Exception {
 		SendMessageCommand sendCommand = new SendMessageCommand(sender, message);
 		cb.setCommand(sendCommand);
 		cb.run();
