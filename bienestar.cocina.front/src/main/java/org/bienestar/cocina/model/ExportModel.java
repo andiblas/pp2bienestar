@@ -1,6 +1,5 @@
 package org.bienestar.cocina.model;
 
-import java.io.IOException;
 import java.time.LocalDate;
 
 import org.bienestar.cocina.export.CSVExporterFacade;
@@ -12,7 +11,7 @@ public class ExportModel extends Model {
 		CSVExporterFacade exporterFacade = new CSVExporterFacade();
 		try {
 			exporterFacade.export(from, to);
-		} catch (IOException e) {
+		} catch (Exception e) {
 			notifyObservers(e);
 			e.printStackTrace();
 		}

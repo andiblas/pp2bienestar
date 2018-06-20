@@ -7,8 +7,8 @@ import org.bienestar.cocina.back.messenger.TextMessage;
 import org.bienestar.cocina.back.messenger.breaker.CircuitBreaker;
 import org.bienestar.cocina.back.messenger.breaker.CircuitBreakerName;
 import org.bienestar.cocina.back.messenger.breaker.CircuitBreakerRegistry;
-import org.bienestar.cocina.back.messenger.breaker.Sender;
 import org.bienestar.cocina.back.messenger.messages.SendMessageCommand;
+import org.bienestar.cocina.back.senders.Sender;
 import org.bienestar.cocina.exceptions.SendingException;
 import org.junit.Test;
 
