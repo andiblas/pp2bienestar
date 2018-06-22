@@ -4,17 +4,17 @@ import org.bienestar.cocina.exceptions.IncorrectDayOfMonthException;
 import org.bienestar.cocina.exceptions.InvalidMonthException;
 import org.bienestar.cocina.exceptions.InvalidSeparatorException;
 import org.bienestar.cocina.exceptions.TooManySeparatorException;
-import org.bienestar.cocina.validations.ValidationBuilder;
+import org.bienestar.cocina.validations.ValidationFactory;
 import org.junit.Before;
 import org.junit.Test;
 
 public class ValidationBuilderTest {
 
-	private ValidationBuilder builder;
+	private ValidationFactory builder;
 	
 	@Before
 	public void setUp() throws Exception {
-		builder = new ValidationBuilder();
+		builder = new ValidationFactory();
 	}
 	
 	@Test(expected = InvalidSeparatorException.class)

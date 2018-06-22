@@ -15,7 +15,7 @@ import org.bienestar.cocina.specifications.validations.IsMonth;
 import org.bienestar.cocina.specifications.validations.IsValidDay;
 import org.bienestar.cocina.specifications.validations.IsValidSeparator;
 
-public class ValidationBuilder {
+public class ValidationFactory {
 
 	public Validation<String> hasOnlyOneSeparator(){
 		Specification<String> spec = new HasOneSeparator("/").or(new HasOneSeparator("-"));
