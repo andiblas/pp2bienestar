@@ -27,10 +27,10 @@ public class IngredientAdviser {
 
 	public List<String> getBestFit(Preparation preparation, String keyword) {
 
-		List<String> result = spelling.getBestFit(keyword);
-
 		if (preparation == null)
-			return result;
+			throw new IllegalArgumentException("preparation");
+		
+		List<String> result = spelling.getBestFit(keyword);
 
 		return sortByPreparation(preparation, result);
 	}

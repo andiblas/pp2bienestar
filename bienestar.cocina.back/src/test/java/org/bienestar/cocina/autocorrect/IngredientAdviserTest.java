@@ -74,27 +74,27 @@ public class IngredientAdviserTest {
 
 	@Test
 	public void inputa() {
-		List<String> result = adviser.getBestFit(null, "a");
+		List<String> result = adviser.getBestFit(new Preparation(), "a");
 		assertTrue(result.contains("Azúcar"));
 		assertTrue(result.contains("Agua"));
 	}
 
 	@Test
 	public void inputA() {
-		List<String> result = adviser.getBestFit(null, "A");
+		List<String> result = adviser.getBestFit(new Preparation(), "A");
 		assertTrue(result.contains("Azúcar"));
 		assertTrue(result.contains("Agua"));
 	}
 
 	@Test
 	public void inputZ() {
-		List<String> result = adviser.getBestFit(null, "Z");
+		List<String> result = adviser.getBestFit(new Preparation(), "Z");
 		assertTrue(result.contains("Azúcar"));
 	}
 
 	@Test
 	public void inputAzu() {
-		List<String> result = adviser.getBestFit(null, "Azu");
+		List<String> result = adviser.getBestFit(new Preparation(), "Azu");
 		assertTrue(result.contains("Azúcar"));
 		assertEquals(1, result.size());
 	}
