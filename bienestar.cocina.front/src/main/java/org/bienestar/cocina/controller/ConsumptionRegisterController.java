@@ -30,6 +30,13 @@ public class ConsumptionRegisterController extends Controller<ConsumptionRegiste
 					view.setSuggestionsList(bestFit);
 			}
 		});
+		
+		view.addBtnSaveActionListener(new ActionListener() {
+			
+			public void actionPerformed(ActionEvent arg0) {
+				model.validateDate(view.getTxtFecha());
+			}
+		});
 	}
 
 }

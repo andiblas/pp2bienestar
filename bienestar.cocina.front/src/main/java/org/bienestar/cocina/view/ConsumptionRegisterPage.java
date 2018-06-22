@@ -7,17 +7,17 @@ import java.util.Observable;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.border.EtchedBorder;
 import javax.swing.event.DocumentListener;
 
+import org.bienestar.cocina.exceptions.AbstractException;
 import org.bienestar.cocina.view.base.View;
 import org.bienestar.cocina.view.base.components.ImagePanel;
 
 import com.mxrck.autocompleter.TextAutoCompleter;
-import javax.swing.JPanel;
-import javax.swing.border.BevelBorder;
-import javax.swing.border.CompoundBorder;
-import javax.swing.border.EtchedBorder;
 
 public class ConsumptionRegisterPage extends View {
 
@@ -120,8 +120,12 @@ public class ConsumptionRegisterPage extends View {
 	public void setSuggestionsList(List<String> suggestions) {
 		txtIngredienteAutoCompleter.setItems(suggestions.toArray());
 	}
-
+	
 	public void update(Observable arg0, Object arg1) {
+		JOptionPane.showMessageDialog(this, ((AbstractException) arg1).getMessage(), "Error", JOptionPane.OK_OPTION);
+	}
 
+	public String getTxtFecha() {
+		return txtFecha.getText();
 	}
 }

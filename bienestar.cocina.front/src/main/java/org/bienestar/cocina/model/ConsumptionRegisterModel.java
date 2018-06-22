@@ -6,8 +6,10 @@ import java.util.List;
 
 import org.bienestar.cocina.autocorrect.IngredientAdviser;
 import org.bienestar.cocina.domain.Preparation;
+import org.bienestar.cocina.interpreters.DateInterpreter;
 import org.bienestar.cocina.model.base.Model;
 import org.bienestar.cocina.repository.RepositoryStore;
+import org.bienestar.cocina.validations.ValidationBuilder;
 
 public class ConsumptionRegisterModel extends Model {
 
@@ -23,6 +25,18 @@ public class ConsumptionRegisterModel extends Model {
 			notifyObservers(e);
 		}
 		return null;
+	}
+
+	public void validateDate(String date) {
+		DateInterpreter dateInterpreter = new DateInterpreter();
+		String interpretedDate = dateInterpreter.interpret(date);
+		ValidationBuilder valBuilder = new ValidationBuilder();
+		try {
+			valBuilder.isValidDayOfMonth().validate(interpretedDate);
+		} catch (Exception e) {
+			this.notifyObservers(e);
+		}
+
 	}
 
 }

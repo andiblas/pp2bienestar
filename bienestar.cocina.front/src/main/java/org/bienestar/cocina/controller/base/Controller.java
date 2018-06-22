@@ -11,6 +11,7 @@ public abstract class Controller<T extends View, S extends Model> {
 	public Controller(T view, S model) {
 		this.view = view;
 		this.model = model;
+		model.addObserver(view);
 	}
 	
 	public S getModel() {
