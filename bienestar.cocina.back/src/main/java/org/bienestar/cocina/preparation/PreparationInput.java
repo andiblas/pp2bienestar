@@ -18,6 +18,10 @@ public class PreparationInput {
 		preparation.setPreparation(preparationInput);
 		preparationRepository.getPreparations().add(preparation);
 	}
+	
+	public List<String> getPreparationsByText(String text) {
+		return getPreparations().stream().filter(x -> x.indexOf(text) > 0).collect(Collectors.toList());
+	}
 
 	public List<String> getPreparations() {
 		return preparationRepository.getPreparations().stream()

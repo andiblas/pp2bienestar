@@ -16,6 +16,14 @@ public class PreparationTest {
 		
 		assertTrue(preparationInput.getPreparations().contains("Leche Chocolatada"));
 	}
+	
+	@Test
+	public void preparationTestInvalidInput() {
+		PreparationRepository preparationRepository = new PreparationRepository();
+		PreparationInput preparationInput = new PreparationInput(preparationRepository);
+		
+		assertTrue(preparationInput.getPreparationsByText("Test").isEmpty());
+	}
 
 	@Test
 	public void preparationMock() {
